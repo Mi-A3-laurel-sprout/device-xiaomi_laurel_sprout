@@ -185,6 +185,7 @@ debug.stagefright.omx_default_rank=0
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
+ro.vendor.perf.scroll_opt=true
 
 # Pre-rendering
 ro.vendor.perf.scroll_opt=true
