@@ -170,6 +170,11 @@ persist.vendor.ims.disableDebugLogs=1
 persist.vendor.ims.disableIMSLogs=1
 persist.vendor.ims.disableQXDMLogs=1
 
+# IFAAService
+persist.vendor.sys.fp.udfps.location.X_Y=293,1356
+persist.vendor.sys.fp.udfps.size.width_height=134,134
+ro.hardware.fp.udfps=true
+
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
