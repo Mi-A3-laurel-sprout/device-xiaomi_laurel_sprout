@@ -14,21 +14,19 @@
 # Camera
 /mnt/vendor/persist/camera(/.*)?    u:object_r:camera_persist_file:s0
 
-# Charger
-/system/bin/chargeonlymode                    u:object_r:charger_exec:s0
-
 # FOD
-/sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/touch/tp_dev/fod_status          u:object_r:sysfs_fingerprint:s0
-/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui                       u:object_r:sysfs_fingerprint:s0
+/sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/touch/tp_dev/fod_status          u:object_r:sysfs_fod:s0
+/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui                       u:object_r:sysfs_fod:s0
 
 # HALs
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service\.laurel_sprout            u:object_r:hal_fingerprint_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.[0-4]-service.clearkey                  u:object_r:vendor_hal_drm_widevine_exec:s0
 
 # Fingerprint
-/data/gf_data(/.*)?                             u:object_r:fingerprint_data_file:s0
-/data/vendor/fpc(/.*)?                          u:object_r:fingerprint_data_file:s0
-/data/vendor/gf_data(/.*)?                      u:object_r:fingerprint_data_file:s0
-/data/vendor/goodix(/.*)?                       u:object_r:fingerprint_data_file:s0
+/data/gf_data(/.*)?                             u:object_r:fingerprintd_data_file:s0
+/data/vendor/fpc(/.*)?                          u:object_r:fingerprint_vendor_data_file:s0
+/data/vendor/gf_data(/.*)?                      u:object_r:fingerprint_vendor_data_file:s0
+/data/vendor/goodix(/.*)?                       u:object_r:fingerprint_vendor_data_file:s0
 /dev/goodix_fp                                  u:object_r:fingerprint_device:s0
 
 # Hexagon DSP-side executable needed for Halide operation
@@ -51,9 +49,6 @@
 /(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.misys@1\.0-service          u:object_r:hal_misys_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.misys@2\.0-service          u:object_r:hal_misys_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.misys@3\.0-service          u:object_r:hal_misys_default_exec:s0
-
-# Power
-/(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.3-service\.laurel_sprout-libperfmgr                              u:object_r:hal_power_default_exec:s0
 
 # Thermal
 /data/vendor/thermal(/.*)?                      u:object_r:thermal_data_file:s0

@@ -1,4 +1,14 @@
-# laurel_sprout package version: V12.0.15.0.RFQMIXM, unless stated otherwise
+# laurel_sprout package version: V12.0.26.0.RFQMIXM, unless stated otherwise
+
+# Audio hardware
+vendor/lib/hw/audio.primary.trinket.so
+vendor/lib/libaudio_log_utils.so
+vendor/lib/libaudioalsa.so
+vendor/lib/libtinycompress.so
+vendor/lib64/hw/audio.primary.trinket.so
+vendor/lib64/libaudio_log_utils.so
+vendor/lib64/libaudioalsa.so
+vendor/lib64/libtinycompress.so
 
 # Audio ACDB
 vendor/etc/acdbdata/QRD/QRD_Bluetooth_cal.acdb
@@ -11,10 +21,6 @@ vendor/etc/acdbdata/QRD/QRD_Headset_cal.acdb
 vendor/etc/acdbdata/QRD/QRD_Speaker_cal.acdb
 vendor/etc/acdbdata/QRD/QRD_workspaceFile.qwsp
 vendor/etc/acdbdata/adsp_avs_config.acdb
-
-# Audio - Sound Trigger
-vendor/lib/hw/sound_trigger.primary.trinket.so
-vendor/lib64/hw/sound_trigger.primary.trinket.so
 
 # ADSP modules (misound)
 vendor/lib/rfsa/adsp/misound_res.bin
@@ -44,7 +50,7 @@ vendor/lib/libjpegdmahw.so
 vendor/lib/libjpegehw.so
 vendor/lib/libmialgo_sd.so
 vendor/lib/libmibokeh_660.so
-vendor/lib/libmm-qcamera.so
+vendor/lib/libmm-qcamera.so 
 vendor/lib/libmmjpeg.so
 vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libmmqjpegdma.so
@@ -71,7 +77,7 @@ vendor/lib64/libsns_low_lat_stream_stub.so
 vendor/lib64/libsnsapi.so
 vendor/lib64/libsnsdiaglog.so
 vendor/lib64/libswvdec.so
-vendor/lib64/libsysmon_cdsp_skel.so
+vendor/lib64/libsysmon_cdsp_skel.so 
 
 # Camera actuator
 vendor/lib/libactuator_ad5816g.so
@@ -2799,6 +2805,7 @@ vendor/etc/sensors/config/sns_tilt_to_wake.json
 vendor/etc/sensors/config/sns_wrist_pedo.json
 vendor/etc/sensors/config/stk3x3x_0.json
 vendor/etc/sensors/config/sx932x_0.json
+vendor/etc/sensors/sns_reg_config
 
 # Thermal
 vendor/etc/thermal-engine-high.conf

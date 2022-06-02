@@ -666,7 +666,7 @@
     <bool name="config_alt_ambient_display">true</bool>
 
     <!-- Height of the status bar -->
-    <dimen name="status_bar_height_landscape">56px</dimen>
+    <dimen name="status_bar_height_default">70px</dimen>
     <dimen name="status_bar_height_portrait">70px</dimen>
 
     <!-- Whether the always on display mode is available. -->

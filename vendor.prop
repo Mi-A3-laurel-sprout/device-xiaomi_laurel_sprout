@@ -9,12 +9,9 @@ persist.vendor.audio.calfile6=/vendor/etc/acdbdata/QRD/QRD_Headset_cal.acdb
 persist.vendor.audio.calfile7=/vendor/etc/acdbdata/QRD/QRD_Speaker_cal.acdb
 
 # Audio
-af.fast_track_multiplier=2
 vendor.audio_hal.period_size=192
-ro.vendor.audio.sdk.fluencetype=fluence
-persist.vendor.audio.fluence.audiorec=false
+persist.vendor.audio.fluence.audiorec=true
 persist.vendor.audio.fluence.voicecall=true
-persist.vendor.audio.fluence.voicerec=false
 persist.vendor.audio.fluence.speaker=true
 persist.vendor.audio.fluence.voicecomm=true
 vendor.audio.tunnel.encode=false
@@ -24,7 +21,6 @@ audio.offload.min.duration.secs=30
 audio.offload.video=true
 vendor.audio.offload.track.enable=true
 audio.deep_buffer.media=true
-vendor.voice.path.for.pcm.voip=true
 vendor.audio.offload.multiaac.enable=true
 vendor.audio.dolby.ds2.enabled=false
 vendor.audio.dolby.ds2.hardbypass=false
@@ -44,8 +40,7 @@ vendor.audio.chk.cal.spk=2
 vendor.audio.chk.cal.us=0
 vendor.audio.volume.headset.gain.depcal=true
 audio.sys.noisy.broadcast.delay=500
-audio.sys.mute.latency.factor=2
-audio.sys.routing.latency=0
+audio.offload.min.duration.secs=30
 audio.sys.offload.pstimeout.secs=3
 vendor.audio.feature.afe_proxy.enable=true
 vendor.audio.feature.anc_headset.enable=true
@@ -53,7 +48,6 @@ vendor.audio.feature.battery_listener.enable=false
 vendor.audio.feature.compr_cap.enable=false
 vendor.audio.feature.compress_in.enable=false
 vendor.audio.feature.compress_meta_data.enable=true
-vendor.audio.feature.compr_voip.enable=false
 vendor.audio.feature.concurrent_capture.enable=false
 vendor.audio.feature.custom_stereo.enable=true
 vendor.audio.feature.display_port.enable=true
@@ -94,9 +88,12 @@ ro.config.vc_call_vol_steps=7
 
 # Bluetooth
 persist.vendor.qcom.bluetooth.soc=cherokee
+persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
+persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=false
+persist.vendor.qcom.bluetooth.enable.splita2dp=true
+persist.vendor.qcom.bluetooth.scram.enabled=true
+persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 vendor.qcom.bluetooth.soc=cherokee
-persist.vendor.btstack.enable.twsplus=true
-persist.vendor.btstack.enable.twsplussho=true
 ro.bluetooth.a2dp_offload.supported=true
 vendor.audio.feature.a2dp_offload.enable=true
 ro.vendor.bluetooth.wipower=false
@@ -107,15 +104,14 @@ persist.vendor.camera.preview.ubwc=0
 vendor.video.disable.ubwc=1
 vidc.enc.dcvs.extra-buff-count=2
 camera.disable_zsl_mode=true
+persist.vendor.camera.expose.aux=1
 persist.vendor.camera.HAL3.enabled=1
 persist.vendor.camera.manufacturer=Xiaomi
 persist.vendor.camera.eis.enable=1
 vendor.camera.not.cts.apk=1
 vendor.camera.not.ctsverify.apk=1
-persist.vendor.camera.perflock.enable=0
 
 # Chipset
-ro.soc.manufacturer=Qualcomm
 ro.soc.model=SM6125
 
 # Crypto
@@ -129,14 +125,14 @@ debug.sf.early_app_phase_offset_ns=1500000
 debug.sf.early_gl_app_phase_offset_ns=15000000
 debug.sf.early_gl_phase_offset_ns=3000000
 debug.sf.early_phase_offset_ns=1500000
+debug.sf.enable_gl_backpressure=1
 debug.sf.disable_backpressure=1
 debug.sf.hw=1
-debug.force_no_blanking=true
-debug.sf.latch_unsignaled=1
+debug.sf.auto_latch_unsignaled=true
 debug.sdm.support_writeback=0
 ro.opengles.version=196610
-ro.config.avoid_gfx_accel=true
 debug.sf.disable_client_composition_cache=1
+debug.sf.layer_caching_active_layer_timeout_ms=1000
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
 ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
@@ -151,13 +147,6 @@ ro.vendor.display.cabl=0
 vendor.display.disable_skip_validate=1
 vendor.display.enable_default_color_mode=1
 vendor.gralloc.enable_fb_ubwc=1
-ro.sf.force_light_brightness=1
-ro.surface_flinger.enable_frame_rate_override=false
-
-# IMS
-persist.dbg.volte_avail_ovr=1
-persist.dbg.vt_avail_ovr=1
-persist.dbg.wfc_avail_ovr=1
 
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
@@ -165,12 +154,12 @@ ro.frp.pst=/dev/block/bootdevice/by-name/frp
 # Keymaster 4.0 - TDES support
 ro.hardware.keystore_desede=true
 
+# LMK
+ro.vendor.lmk.force_inkernel_lmk=true
+
 # Media
 debug.stagefright.ccodec=1
 debug.stagefright.omx_default_rank=0
-
-# Perf
-ro.vendor.extension_library=libqti-perfd-client.so
 
 # Pre-rendering
 ro.vendor.perf.scroll_opt=true
@@ -179,22 +168,12 @@ ro.vendor.perf.scroll_opt=true
 vendor.usb.diag.func.name=diag
 vendor.usb.dpl.inst.name=dpl
 vendor.usb.qdss.inst.name=qdss
-vendor.usb.rmnet.func.name=gsi
 vendor.usb.rmnet.inst.name=rmnet
-vendor.usb.rndis.func.name=gsi
 vendor.usb.use_ffs_mtp=0
 vendor.usb.use_gadget_hal=0
 
 # Radio
-persist.radio.multisim.config=dsds
-persist.vendor.radio.apm_sim_not_pwdn=1
-persist.vendor.radio.custom_ecc=1
-persist.vendor.radio.enableadvancedscan=true
-persist.vendor.radio.procedure_bytes=SKIP
-persist.vendor.radio.rat_on=combine
-persist.vendor.radio.sib16_support=1
-persist.vendor.radio.report_codec=1
-persist.vendor.radio.vdp_on_ims_cap=1
+ro.telephony.iwlan_operation_mode=legacy
 persist.sys.fflag.override.settings_provider_model=false
 
 # Sensor
@@ -202,5 +181,7 @@ persist.vendor.sensors.enable.bypass_worker=true
 persist.vendor.sensors.enable.rt_task=false
 persist.vendor.sensors.support_direct_channel=false
 
-# Time
-persist.vendor.delta_time.enable=true
+# Usb
+persist.vendor.usb.config.extra=none
+vendor.usb.dpl.inst.name=dpl
+vendor.usb.rmnet.inst.name=rmnet

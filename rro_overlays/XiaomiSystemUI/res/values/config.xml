@@ -31,7 +31,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <resources>
     <!-- Enable doze mode -->
-    <bool name="doze_display_state_supported">true</bool>
+    <bool name="doze_display_state_supported">false</bool>
 
     <!-- Should we vibrate on an icon animation of the shelf. This should only be active if the
      vibrator is capable of subtle vibrations -->
@@ -40,10 +40,12 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Should "4G" be shown instead of "LTE" when the network is NETWORK_TYPE_LTE? -->
     <bool name="config_show4GForLTE">true</bool>
 
-    <!-- Udfps vendor code -->
-    <integer name="config_udfpsVendorCode">22</integer>
+    <!-- Doze: does the single tap sensor need a proximity check? -->
+    <bool name="doze_single_tap_proximity_check">true</bool>
 
-    <!-- Whether to pulse onFingerDown actions instead
-        of waking the screen while the screen is off or in lpm. -->
-    <bool name="config_pulseOnFingerDown">true</bool>
+    <!-- Doze: does the double tap sensor need a proximity check? -->
+    <bool name="doze_double_tap_proximity_check">true</bool>
+
+    <!-- Doze: does the pickup sensor need a proximity check? -->
+    <bool name="doze_pickup_event_proximity_check">true</bool>
 </resources>

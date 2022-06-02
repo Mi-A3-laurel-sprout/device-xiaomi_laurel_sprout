@@ -31,7 +31,6 @@ import /vendor/etc/init/hw/init.msm.usb.configfs.rc
 import /vendor/etc/init/hw/init.qcom.test.rc
 import /vendor/etc/init/hw/init.target.rc
 import /vendor/etc/init/hw/init.qcom.factory.rc
-import /vendor/etc/init/hw/init.laurel.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -55,10 +54,6 @@ on early-init
     # Change ownership of sw_sync node
     chown system graphics /sys/kernel/debug/sync/sw_sync
     chmod 0666 /sys/kernel/debug/sync/sw_sync
-	
-    # Workarround for cache
-    rm /data/resource-cache
-    rm /data/system/package_cache 
 
     chown root system /dev/kmsg
     chmod 0620 /dev/kmsg
@@ -221,8 +216,6 @@ on boot
 
     # limit discard size to 128MB in order to avoid long IO latency
     write /sys/block/sda/queue/discard_max_bytes 134217728
-
-    setprop init.svc.console stopped
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -546,21 +539,6 @@ on property:ro.data.large_tcp_window_size=true
 on property:sys.sysctl.tcp_adv_win_scale=*
     write /proc/sys/net/ipv4/tcp_adv_win_scale ${sys.sysctl.tcp_adv_win_scale}
 
-service vendor.wigig_supplicant /vendor/bin/hw/wpa_supplicant \
-    -iwigig0 -Dnl80211 -c/data/vendor/wifi/wigig_supplicant.conf \
-    -m/data/vendor/wifi/wigig_p2p_supplicant.conf \
-    -O/data/vendor/wifi/wigig_sockets -dd \
-    -e/data/vendor/wifi/wigig_entropy.bin -g@android:wigig/wpa_wigig0 \
-    -S wigigsvc
-    #   we will start as root and wpa_supplicant will switch to user wifi
-    #   after setting up the capabilities required for WEXT
-    #   user wifi
-    #   group wifi inet keystore
-    class main
-    socket wigig/wpa_wigig0 dgram 660 wifi wifi
-    disabled
-    oneshot
-
 # Data Migration
 service vendor.move_wifi_data /system/bin/move_wifi_data.sh
     class main
@@ -676,9 +654,6 @@ service loc_launcher /system/vendor/bin/loc_launcher
     user gps
     group gps
 
-on property:persist.sys.xtra-daemon.enabled=*
-    restart loc_launcher
-
 service qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root
@@ -770,7 +745,7 @@ service profiler_daemon /system/bin/profiler_daemon
     group root
     disabled
 
-service vendor.charger /system/bin/chargeonlymode
+service charger /system/bin/charger
     class charger
     user system
     group system graphics input

@@ -20,12 +20,11 @@
 
     <!-- Bottom margin size when fingerprint in display is active -->
     <dimen name="keyguard_indication_margin_bottom_fingerprint_in_display">120dp</dimen>
-    
-    <dimen name="rounded_corner_content_padding">10.0dp</dimen>
+    <dimen name="keyguard_indication_margin_bottom">120dp</dimen>    
 
-    <!-- Maximum vertical offset of statusbar for burn-in protection -->
-    <dimen name="status_bar_offset_max_y">0.75dp</dimen>
+    <!-- Padding around the status bar -->
+    <dimen name="rounded_corner_content_padding">35px</dimen>
 
-    <!-- Maximum horizontal offset of statusbar for burn-in protection -->
-    <dimen name="status_bar_offset_max_x">0.75dp</dimen>
+    <!-- Height of the status bar header bar when on Keyguard -->
+    <dimen name="status_bar_header_height_keyguard">70px</dimen>
 </resources>
