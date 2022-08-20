@@ -116,6 +116,11 @@ persist.vendor.camera.perflock.enable=0
 ro.soc.manufacturer=Qualcomm
 ro.soc.model=SM6125
 
+# Crypto
+ro.crypto.dm_default_key.options_format.version=1
+ro.crypto.volume.metadata.method=dm-default-key
+ro.crypto.volume.options=::v1
+
 # Display
 debug.sf.auto_latch_unsignaled=0
 debug.sf.early_app_phase_offset_ns=1500000
