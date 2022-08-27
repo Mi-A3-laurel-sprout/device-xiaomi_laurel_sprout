@@ -26,6 +26,9 @@ source "${HELPER}"
 
 function blob_fixup() {
     case "${1}" in
+        system_ext/lib64/lib-imsvideocodec.so)
+            "${PATCHELF}" --add-needed "libims_shim.so" "${2}"
+            ;;
         vendor/lib/miwatermark.so)
             "${PATCHELF}" --add-needed "miwatermark_vendor.so" "${2}"
             ;;
