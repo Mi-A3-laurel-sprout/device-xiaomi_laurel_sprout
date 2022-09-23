@@ -127,6 +127,8 @@ debug.sf.disable_backpressure=1
 debug.sf.hw=1
 debug.sf.latch_unsignaled=1
 debug.sdm.support_writeback=0
+debug.hwui.use_hint_manager=true
+debug.hwui.target_cpu_time_percent=30
 ro.opengles.version=196610
 ro.config.avoid_gfx_accel=true
 debug.sf.disable_client_composition_cache=1
@@ -200,7 +202,7 @@ persist.vendor.sensors.support_direct_channel=false
 # Time
 persist.vendor.delta_time.enable=true
 
-# Touch Hax 
+# Touch Hax
 touch.size.scale=1
 touch.size.bias=0
 touch.size.isSummed=0
