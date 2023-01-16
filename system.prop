@@ -16,6 +16,9 @@ persist.vendor.dpmhalservice.enable=1
 # GPS
 persist.vendor.overlay.izat.optin=rro
 
+# Graphics
+debug.force_no_blanking=true
+
 # LMKD
 ro.config.low_ram = false
 ro.lmk.log_stats=true
