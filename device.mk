@@ -71,6 +71,7 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_PACKAGES += \
     XiaomiFrameworks \
     XiaomiSystemUI \
+    DisplayFeaturesLAUREL \
     UdfpsSystemUI \
     RCMSystemUI \
     RCMFramework
@@ -270,6 +271,10 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.mapper@1.1.vendor \
     vendor.qti.hardware.display.mapper@2.0.vendor \
     vendor.qti.hardware.display.mapper@4.0.vendor
+
+# DisplayFeatures
+PRODUCT_PACKAGES += \
+    DisplayFeatures
 
 # DRM
 PRODUCT_PACKAGES += \

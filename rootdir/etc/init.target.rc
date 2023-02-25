@@ -154,6 +154,12 @@ on boot
 #Load WLAN driver
     insmod /vendor/lib/modules/qca_cld3_wlan.ko
 
+    # Allow system to manipulate DC Dim and HBM nodes
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display/dc_dim
+    chmod 0660 /sys/devices/platform/soc/soc:qcom,dsi-display/dc_dim
+    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display/hbm
+    chmod 0660 /sys/devices/platform/soc/soc:qcom,dsi-display/hbm
+
 #USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
     setprop vendor.usb.rmnet.func.name "gsi"
