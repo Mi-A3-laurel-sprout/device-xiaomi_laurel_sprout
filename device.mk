@@ -61,6 +61,7 @@ PRODUCT_PACKAGES += \
     AOSPALaurelFrameworks \
     AOSPALaurelSettings \
     AOSPALaurelSystemUI \
+    DisplayFeaturesLAUREL \
     LaurelCarrierConfigOverlay \
     LaurelFrameworks \
     LaurelSystemUI
