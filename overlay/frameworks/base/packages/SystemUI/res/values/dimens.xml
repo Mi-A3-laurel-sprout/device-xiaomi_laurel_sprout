@@ -39,6 +39,6 @@
     <dimen name="status_bar_padding_end">0dp</dimen>
 
     <!-- keyguard positioning -->
-    <dimen name="keyguard_indication_margin_bottom">106dp</dimen>
+    <dimen name="keyguard_indication_margin_bottom">120dp</dimen>
 
 </resources>
