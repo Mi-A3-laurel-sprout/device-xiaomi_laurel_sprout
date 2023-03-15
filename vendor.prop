@@ -115,7 +115,7 @@ vendor.camera.not.ctsverify.apk=1
 persist.vendor.camera.perflock.enable=0
 
 # Chipset
-ro.soc.manufacturer=Qualcomm
+ro.soc.manufacturer=QTI
 ro.soc.model=SM6125
 
 # Display
