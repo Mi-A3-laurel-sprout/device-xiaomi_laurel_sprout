@@ -161,6 +161,9 @@ persist.dbg.wfc_avail_ovr=1
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
+# FS-verity
+ro.apk_verity.mode=2
+
 # Keymaster 4.0 - TDES support
 ro.hardware.keystore_desede=true
 
