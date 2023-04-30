@@ -291,7 +291,9 @@ PRODUCT_COPY_FILES += \
 
 # Fingerprint feature
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3-service.laurel_sprout
+    android.hardware.biometrics.fingerprint@2.3-service.laurel_sprout \
+    android.hardware.biometrics.fingerprint@2.3.vendor \
+    vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor
 
 # FM
 PRODUCT_PACKAGES += \
