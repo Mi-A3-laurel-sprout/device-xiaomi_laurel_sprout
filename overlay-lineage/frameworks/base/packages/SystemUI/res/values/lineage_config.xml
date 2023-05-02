@@ -15,8 +15,11 @@
     <color name="config_udfpsColor">#00ffffff</color>
 
     <!-- HBM type of UDFPS overlay.
-            0 - GLOBAL HBM 
+            0 - GLOBAL HBM
             1 - LOCAL HBM
     -->
     <integer name="config_udfpsHbmType">0</integer>
+
+    <!-- Whether to find optimal display refresh rate when using udfps -->
+    <bool name="config_udfpsOptimalRefreshRate">false</bool>
 </resources>
