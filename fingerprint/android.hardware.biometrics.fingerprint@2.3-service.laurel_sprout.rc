@@ -17,8 +17,6 @@ on boot
     chmod 0700 /sys/devices/platform/soc/5e00000.qcom,mdss_mdp/drm/card0/card0-DSI-1/disp_param    
     chmod 0660 /sys/class/touch/tp_dev/fod_status
 
-    write /sys/class/touch/tp_dev/fod_status 1
-
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/irq
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/irq_enable
     chown system system /sys/bus/platform/devices/soc:fingerprint_fpc/wakeup_enable
