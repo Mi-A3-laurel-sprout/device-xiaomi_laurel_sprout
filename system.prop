@@ -43,6 +43,7 @@ persist.radio.NO_STAPA=1
 persist.vendor.data.mode=concurrent
 persist.vendor.radio.atfwd.start=true
 persist.vendor.radio.force_on_dc=true
+persist.sys.radio.force_lte_ca=true
 ril.subscription.types=NV,RUIM
 ro.telephony.default_network=22,22
 ro.vendor.use_data_netmgrd=true
