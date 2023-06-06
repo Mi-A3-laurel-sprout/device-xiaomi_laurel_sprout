@@ -4,6 +4,5 @@ soong_namespace {
     "hardware/google/interfaces",
     "hardware/interfaces",
     "vendor/qcom/opensource/dataservices",
-    "hardware/xiaomi",
     ],
 }

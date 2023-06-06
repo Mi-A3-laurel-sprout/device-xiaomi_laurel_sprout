@@ -114,9 +114,10 @@ TARGET_ENABLE_MEDIADRM_64 := true
 BOARD_HAVE_QCOM_FM := true
 BOARD_HAS_QCA_FM_SOC := cherokee
 
-# FOD
-TARGET_SURFACEFLINGER_UDFPS_LIB := //$(DEVICE_PATH):libudfps_extension.laurel_sprout
+# Fingerprint
+TARGET_HAS_UDFPS := true
 TARGET_USES_FOD_ZPOS := true
+TARGET_SURFACEFLINGER_UDFPS_LIB := //$(DEVICE_PATH):libudfps_extension.laurel_sprout
 
 # GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default

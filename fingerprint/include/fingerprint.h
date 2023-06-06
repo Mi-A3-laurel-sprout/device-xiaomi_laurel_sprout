@@ -1,22 +1,11 @@
-/*
- * Copyright (C) 2014 The Android Open Source Project
- * Copyright (C) 2020 The LineageOS Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+ /*
+  * Copyright (C) 2014 The Android Open Source Project
+  *               2022 The LineageOS Project
+  *
+ * SPDX-License-Identifier: Apache-2.0
+  */
 
-#ifndef ANDROID_INCLUDE_HARDWARE_FINGERPRINT_H
-#define ANDROID_INCLUDE_HARDWARE_FINGERPRINT_H
+#pragma once
 
 #include <hardware/hardware.h>
 #include <hardware/hw_auth_token.h>
@@ -120,7 +109,7 @@ typedef struct fingerprint_msg {
 } fingerprint_msg_t;
 
 /* Callback function type */
-typedef void (*fingerprint_notify_t)(const fingerprint_msg_t* msg);
+typedef void (*fingerprint_notify_t)(const fingerprint_msg_t *msg);
 
 /* Synchronous operation */
 typedef struct fingerprint_device {
@@ -147,7 +136,7 @@ typedef struct fingerprint_device {
      * Function return: 0 if callback function is successfuly registered
      *                  or a negative number in case of error, generally from the errno.h set.
      */
-    int (*set_notify)(struct fingerprint_device* dev, fingerprint_notify_t notify);
+    int (*set_notify)(struct fingerprint_device *dev, fingerprint_notify_t notify);
 
     /*
      * Fingerprint pre-enroll enroll request:
@@ -159,7 +148,7 @@ typedef struct fingerprint_device {
      * Function return: 0 if function failed
      *                  otherwise, a uint64_t of token
      */
-    uint64_t (*pre_enroll)(struct fingerprint_device* dev);
+    uint64_t (*pre_enroll)(struct fingerprint_device *dev);
 
     /*
      * Fingerprint enroll request:
@@ -175,8 +164,8 @@ typedef struct fingerprint_device {
      *                  or a negative number in case of error, generally from the errno.h set.
      *                  A notify() function may be called indicating the error condition.
      */
-    int (*enroll)(struct fingerprint_device* dev, const hw_auth_token_t* hat, uint32_t gid,
-                  uint32_t timeout_sec);
+    int (*enroll)(struct fingerprint_device *dev, const hw_auth_token_t *hat,
+                    uint32_t gid, uint32_t timeout_sec);
 
     /*
      * Finishes the enroll operation and invalidates the pre_enroll() generated challenge.
@@ -186,7 +175,7 @@ typedef struct fingerprint_device {
      * Function return: 0 if the request is accepted
      *                  or a negative number in case of error, generally from the errno.h set.
      */
-    int (*post_enroll)(struct fingerprint_device* dev);
+    int (*post_enroll)(struct fingerprint_device *dev);
 
     /*
      * get_authenticator_id:
@@ -196,7 +185,7 @@ typedef struct fingerprint_device {
      *
      * Function return: current authenticator id or 0 if function failed.
      */
-    uint64_t (*get_authenticator_id)(struct fingerprint_device* dev);
+    uint64_t (*get_authenticator_id)(struct fingerprint_device *dev);
 
     /*
      * Cancel pending enroll or authenticate, sending FINGERPRINT_ERROR_CANCELED
@@ -206,7 +195,7 @@ typedef struct fingerprint_device {
      * Function return: 0 if cancel request is accepted
      *                  or a negative number in case of error, generally from the errno.h set.
      */
-    int (*cancel)(struct fingerprint_device* dev);
+    int (*cancel)(struct fingerprint_device *dev);
 
     /*
      * Enumerate all the fingerprint templates found in the directory set by
@@ -221,7 +210,7 @@ typedef struct fingerprint_device {
      * Function return: 0 if enumerate request is accepted
      *                  or a negative number in case of error, generally from the errno.h set.
      */
-    int (*enumerate)(struct fingerprint_device* dev);
+    int (*enumerate)(struct fingerprint_device *dev);
 
     /*
      * Fingerprint remove request:
@@ -239,7 +228,7 @@ typedef struct fingerprint_device {
      * Function return: 0 if fingerprint template(s) can be successfully deleted
      *                  or a negative number in case of error, generally from the errno.h set.
      */
-    int (*remove)(struct fingerprint_device* dev, uint32_t gid, uint32_t fid);
+    int (*remove)(struct fingerprint_device *dev, uint32_t gid, uint32_t fid);
 
     /*
      * Restricts the HAL operation to a set of fingerprints belonging to a
@@ -250,7 +239,8 @@ typedef struct fingerprint_device {
      * Function return: 0 on success
      *                  or a negative number in case of error, generally from the errno.h set.
      */
-    int (*set_active_group)(struct fingerprint_device* dev, uint32_t gid, const char* store_path);
+    int (*set_active_group)(struct fingerprint_device *dev, uint32_t gid,
+                            const char *store_path);
 
     /*
      * Authenticates an operation identifed by operation_id
@@ -258,15 +248,15 @@ typedef struct fingerprint_device {
      * Function return: 0 on success
      *                  or a negative number in case of error, generally from the errno.h set.
      */
-    int (*authenticate)(struct fingerprint_device* dev, uint64_t operation_id, uint32_t gid);
+    int (*authenticate)(struct fingerprint_device *dev, uint64_t operation_id, uint32_t gid);
 
-    /**
-     * Call a Xiaomi fingerprint extension command.
+    /*
+     * Xiaomi fingerprint extension command.
      */
     int (*extCmd)(struct fingerprint_device* dev, int32_t cmd, int32_t param);
 
     /* Reserved for backward binary compatibility */
-    void* reserved[4];
+    void *reserved[4];
 } fingerprint_device_t;
 
 typedef struct fingerprint_module {
@@ -278,5 +268,3 @@ typedef struct fingerprint_module {
      */
     struct hw_module_t common;
 } fingerprint_module_t;
-
-#endif /* ANDROID_INCLUDE_HARDWARE_FINGERPRINT_H */

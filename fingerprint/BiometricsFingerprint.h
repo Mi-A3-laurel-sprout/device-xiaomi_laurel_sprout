@@ -1,18 +1,8 @@
 /*
  * Copyright (C) 2017 The Android Open Source Project
- * Copyright (C) 2020 The LineageOS Project
+ *               2022 The LineageOS Project
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 #pragma once
@@ -23,8 +13,7 @@
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
 #include <log/log.h>
-#include <vendor/xiaomi/hardware/fingerprintextension/1.0/IXiaomiFingerprint.h>
-
+#include "UdfpsHandler.h"
 #include "fingerprint.h"
 
 namespace android {
@@ -45,20 +34,18 @@ using ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint
 using ::android::hardware::biometrics::fingerprint::V2_1::RequestStatus;
 using ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint;
 
-using ::vendor::xiaomi::hardware::fingerprintextension::V1_0::IXiaomiFingerprint;
-
-struct BiometricsFingerprint : public IBiometricsFingerprint, public IXiaomiFingerprint {
+struct BiometricsFingerprint : public IBiometricsFingerprint {
+  public:
     BiometricsFingerprint();
     ~BiometricsFingerprint();
-
-    status_t registerAsSystemService();
 
     // Method to wrap legacy HAL with BiometricsFingerprint class
     static IBiometricsFingerprint* getInstance();
 
-    // Methods from ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint follow.
+    // Methods from ::android::hardware::biometrics::fingerprint::V2_1::IBiometricsFingerprint
+    // follow.
     Return<uint64_t> setNotify(
-        const sp<IBiometricsFingerprintClientCallback>& clientCallback) override;
+            const sp<IBiometricsFingerprintClientCallback>& clientCallback) override;
     Return<uint64_t> preEnroll() override;
     Return<RequestStatus> enroll(const hidl_array<uint8_t, 69>& hat, uint32_t gid,
                                  uint32_t timeoutSec) override;
@@ -68,13 +55,18 @@ struct BiometricsFingerprint : public IBiometricsFingerprint, public IXiaomiFing
     Return<RequestStatus> enumerate() override;
     Return<RequestStatus> remove(uint32_t gid, uint32_t fid) override;
     Return<RequestStatus> setActiveGroup(uint32_t gid, const hidl_string& storePath) override;
-    Return<RequestStatus> authenticate(uint64_t operationId, uint32_t gid) override;   
+    Return<RequestStatus> authenticate(uint64_t operationId, uint32_t gid) override;
 
-    Return<int32_t> extCmd(int32_t cmd, int32_t param) override;
+    // Methods from ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint
+    // follow.
+    Return<bool> isUdfps(uint32_t sensorId) override;
+    Return<void> onFingerDown(uint32_t x, uint32_t y, float minor, float major) override;
+    Return<void> onFingerUp() override;
 
-    static fingerprint_device_t* openHal();
+  private:
+    static fingerprint_device_t* openHal(const char* class_name);
     static void notify(
-        const fingerprint_msg_t* msg); /* Static callback for legacy HAL implementation */
+            const fingerprint_msg_t* msg); /* Static callback for legacy HAL implementation */
     static Return<RequestStatus> ErrorFilter(int32_t error);
     static FingerprintError VendorErrorFilter(int32_t error, int32_t* vendorCode);
     static FingerprintAcquiredInfo VendorAcquiredFilter(int32_t error, int32_t* vendorCode);
@@ -83,19 +75,9 @@ struct BiometricsFingerprint : public IBiometricsFingerprint, public IXiaomiFing
     std::mutex mClientCallbackMutex;
     sp<IBiometricsFingerprintClientCallback> mClientCallback;
     fingerprint_device_t* mDevice;
-
-    // Methods from ::android::hardware::biometrics::fingerprint::V2_3::IBiometricsFingerprint follow.
-    Return<bool> isUdfps(uint32_t sensorId) override;
-    Return<void> onFingerDown(uint32_t x, uint32_t y, float minor, float major) override;
-    Return<void> onFingerUp() override;
-
-    // Check does device have UDFPS or not
-    static bool mHaveUdfps;
-
-    // Methods to get fingerprint HAL device
-private:
-    static fingerprint_device_t* getDeviceForVendor(const char* class_name);
-    static fingerprint_device_t* getFingerprintDevice();
+    bool mIsUdfps;
+    UdfpsHandlerFactory* mUdfpsHandlerFactory;
+    UdfpsHandler* mUdfpsHandler;
 };
 
 }  // namespace implementation
