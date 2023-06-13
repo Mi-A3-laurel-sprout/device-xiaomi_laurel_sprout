@@ -364,6 +364,7 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.recovery.qcom.rc \
     init.target.rc \
+    init.fingerprint.rc \
     ueventd.qcom.rc \
     init.xiaomi_parts.rc
 
