@@ -77,4 +77,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <bool name="flag_combined_qs_headers">true</bool>
     <bool name="flag_umo_surface_ripple">true</bool>
     <bool name="flag_umo_turbulence_noise">true</bool>
+
+    <!-- Udfps vendor code -->
+    <integer name="config_udfpsVendorCode">22</integer>
 </resources>
