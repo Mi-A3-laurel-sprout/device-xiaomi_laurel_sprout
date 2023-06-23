@@ -72,4 +72,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     
     <!-- Use framework FOD dimming instead of kernel dimming -->
     <bool name="config_udfpsFrameworkDimming">true</bool>
+
+    <!-- SystemUI flags -->
+    <bool name="flag_combined_qs_headers">true</bool>
+    <bool name="flag_umo_surface_ripple">true</bool>
+    <bool name="flag_umo_turbulence_noise">true</bool>
 </resources>
