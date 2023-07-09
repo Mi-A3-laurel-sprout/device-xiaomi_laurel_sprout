@@ -124,6 +124,17 @@
       "ResetOnInit": true
     },
     {
+      "Name": "TAminclamp",
+      "Path": "/dev/cpuset/top-app/uclamp.min",
+      "Values": [
+        "50",
+        "10",
+        "0"
+      ],
+      "DefaultIndex": 1,
+      "ResetOnInit": true
+    },
+    {
       "Name": "CPUBWHystTriggerCount",
       "Path": "/sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/hyst_trigger_count",
       "Values": [
@@ -293,6 +304,12 @@
       "Value": "5195"
     },
     {
+      "PowerHint": "INTERACTION",
+      "Node": "TAminclamp",
+      "Duration": 0,
+      "Value": "50"
+    },
+    {
       "PowerHint": "LAUNCH",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 1000,
@@ -385,6 +402,12 @@
     {
       "PowerHint": "EXPENSIVE_RENDERING",
       "Node": "GPUMaxFreq",
+      "Duration": 0,
+      "Value": "0"
+    },
+    {
+      "PowerHint": "DISPLAY_INACTIVE",
+      "Node": "TAminclamp",
       "Duration": 0,
       "Value": "0"
     }
