@@ -21,5 +21,6 @@
     package="com.android.displayfeatures.overlay.xiaomi_laurel_sprout"
     android:versionCode="1"
     android:versionName="1.0">
+    <application android:hasCode="false" android:allowBackup="false" />
     <overlay android:targetPackage="com.android.displayfeatures" android:priority="880" android:isStatic="true" />
 </manifest>
