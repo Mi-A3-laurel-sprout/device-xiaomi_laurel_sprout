@@ -370,8 +370,7 @@ PRODUCT_PACKAGES += \
     init.recovery.qcom.rc \
     init.target.rc \
     init.fingerprint.rc \
-    ueventd.qcom.rc \
-    init.xiaomi_parts.rc
+    ueventd.qcom.rc
 
 # IRQ
 PRODUCT_COPY_FILES += \
@@ -583,7 +582,3 @@ $(call inherit-product-if-exists, vendor/xiaomi/laurel_sprout/laurel_sprout-vend
 #Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/lahaina-yupikqrd-snd-card_Button_Jack.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/lahaina-yupikqrd-snd-card_Button_Jack.kl
-
-# Xiaomi
-PRODUCT_PACKAGES += \
-    XiaomiParts
