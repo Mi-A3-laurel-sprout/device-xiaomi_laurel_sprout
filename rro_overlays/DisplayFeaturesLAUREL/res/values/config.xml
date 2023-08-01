@@ -15,7 +15,7 @@
 <resources>
 
     <!-- Path to DC Dimming sysfs node -->
-    <string name="config_DisplayFeaturesDcDimPath" translatable="false">/sys/devices/platform/soc/soc:qcom,dsi-display/dc_dim</string>
+    <string name="config_DisplayFeaturesDcDimPath" translatable="false">/sys/devices/platform/soc/soc:qcom,dsi-display/dc_dimming</string>
 
     <!-- Path to HBM sysfs node -->
     <string name="config_DisplayFeaturesHbmPath" translatable="false">/sys/devices/platform/soc/soc:qcom,dsi-display/hbm</string>
