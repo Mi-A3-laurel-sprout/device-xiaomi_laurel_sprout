@@ -576,12 +576,6 @@ vendor/lib/vendor.qti.hardware.qccsyshal@1.0.so|b38c7e45c5d7dec91f3bdedd1af3c0fd
 vendor/lib64/libqcc_file_agent.so|cd70ce305d5036a027060aa989b0dcbcfab8edb6
 vendor/lib64/vendor.qti.hardware.qccsyshal@1.0.so|3ff445db2dd2db1a1068fe70a54a6c04fbdd3123
 
-# Hotword - from apollo qssi:11/RKQ1.200826.002/V12.1.2.0.RJDMIXM
-system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml|563a58554d9c0dd0608552b644fbf74519a447bb
-system_ext/framework/com.android.hotwordenrollment.common.util.jar|0492cd3db2e253e23b78e56fa8ea7b3a4b15edeb
--product/priv-app/HotwordEnrollmentOKGoogleHEXAGON/HotwordEnrollmentOKGoogleHEXAGON.apk|91c49e2f1f95fe76952eb55d7a936a997685b964
--product/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON.apk|89b2c917c0c35489f10306f1627b2cf7cf6b59cf
-
 # Radio - EMBMS - LA.UM.9.11.r1-04700-NICOBAR.0
 system_ext/etc/permissions/embms.xml|22e7474091f9f71f02dd0cfc76cfa8848a46f079
 system_ext/framework/embmslibrary.jar|841d246e003d7d0baf27ef5937366cc34636bfc1
