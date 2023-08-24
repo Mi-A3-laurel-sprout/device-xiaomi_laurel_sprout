@@ -154,11 +154,13 @@ on boot
 #Load WLAN driver
     insmod /vendor/lib/modules/qca_cld3_wlan.ko
 
-    # Allow system to manipulate DC Dim and HBM nodes
+    # Allow system to manipulate DC Dim, HBM and FPS Counter nodes
     chown system system /sys/devices/platform/soc/soc:qcom,dsi-display/dc_dimming
     chmod 0660 /sys/devices/platform/soc/soc:qcom,dsi-display/dc_dimming
     chown system system /sys/devices/platform/soc/soc:qcom,dsi-display/hbm
     chmod 0660 /sys/devices/platform/soc/soc:qcom,dsi-display/hbm
+    chown system graphics /sys/devices/platform/soc/5e00000.qcom,mdss_mdp/drm/card0/sde-crtc-0/measured_fps
+    chmod 0660 /sys/devices/platform/soc/5e00000.qcom,mdss_mdp/drm/card0/sde-crtc-0/measured_fps
 
 #USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
@@ -168,7 +170,7 @@ on boot
     setprop vendor.usb.qdss.inst.name "qdss"
     setprop sys.usb.configfs 1
 
-    # Restrict permissions to socket file 
+    # Restrict permissions to socket file
     # to hide Magisk & co.
     chmod 440 /proc/net/unix
 
