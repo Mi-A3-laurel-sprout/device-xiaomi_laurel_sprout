@@ -139,6 +139,8 @@ on boot
    mkdir /data/vendor/goodix/gf_data
    mkdir /data/vendor/goodix/gf_cali
    mkdir /data/vendor/goodix/factory_test
+   mkdir /data/vendor/dolby 0770 media media
+   mkdir /data/vendor/multimedia 0775 system system
    chown system system /data/vendor/goodix/gf_data
    chown system system /data/vendor/goodix/gf_cali
    chown system system /data/vendor/goodix/factory_test
