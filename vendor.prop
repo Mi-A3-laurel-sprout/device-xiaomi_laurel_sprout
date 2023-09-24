@@ -26,6 +26,8 @@ vendor.audio.offload.track.enable=true
 audio.deep_buffer.media=true
 vendor.voice.path.for.pcm.voip=true
 vendor.audio.offload.multiaac.enable=true
+vendor.audio.dolby.ds2.enabled=false
+vendor.audio.dolby.ds2.hardbypass=false
 vendor.audio.offload.multiple.enabled=false
 vendor.audio.offload.passthrough=false
 ro.vendor.audio.sdk.ssr=false
@@ -151,15 +153,6 @@ vendor.display.enable_default_color_mode=1
 vendor.gralloc.enable_fb_ubwc=1
 ro.sf.force_light_brightness=1
 ro.hwui.render_ahead=3
-
-# Dolby
-vendor.audio.dolby.ds2.enabled=false
-vendor.audio.dolby.ds2.hardbypass=false
-ro.vendor.dolby.dax.version=DAX3_3.6.0.12_r1
-ro.vendor.product.device.db=OP_DEVICE
-ro.vendor.product.manufacturer.db=OP_PHONE
-vendor.product.device=OP_PHONE
-vendor.product.manufacturer=OPD
 
 # IMS
 persist.dbg.volte_avail_ovr=1
