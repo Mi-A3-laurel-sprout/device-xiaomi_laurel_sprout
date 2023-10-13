@@ -158,6 +158,12 @@ persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
 persist.dbg.wfc_avail_ovr=1
 
+# Fingerprint
+persist.vendor.fingerprint.type=udfps_optical
+persist.vendor.fingerprint.sensor_location=360|1420|70
+persist.vendor.fingerprint.sensor_modules=goodix_fod
+persist.vendor.fingerprint.udfps.control_illumination=true
+
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
 

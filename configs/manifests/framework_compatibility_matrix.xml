@@ -732,6 +732,14 @@
           <instance>default</instance>
        </interface>
    </hal>
+   <hal format="aidl" optional="true">
+       <name>android.hardware.biometrics.fingerprint</name>
+       <version>4</version>
+       <interface>
+          <name>IFingerprint</name>
+          <instance>default</instance>
+       </interface>
+   </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.wifidisplaysession</name>
         <version>1.0</version>

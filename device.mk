@@ -26,7 +26,8 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/interfaces \
     hardware/google/interfaces \
-    vendor/qcom/opensource/dataservices
+    vendor/qcom/opensource/dataservices \
+    hardware/xiaomi
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
@@ -305,7 +306,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint feature
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.3-service.laurel_sprout \
+    android.hardware.biometrics.fingerprint-service.xiaomi \
     vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor \
     libudfpshandler
 

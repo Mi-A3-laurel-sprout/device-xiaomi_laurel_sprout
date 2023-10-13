@@ -125,7 +125,7 @@ TARGET_ENABLE_MEDIADRM_64 := true
 # Fingerprint
 TARGET_HAS_UDFPS := true
 TARGET_USES_FOD_ZPOS := true
-TARGET_SURFACEFLINGER_UDFPS_LIB := //$(DEVICE_PATH):libudfps_extension.laurel_sprout
+TARGET_SURFACEFLINGER_UDFPS_LIB := //hardware/xiaomi:libudfps_extension.xiaomi
 
 # FM
 BOARD_HAVE_QCOM_FM := true
