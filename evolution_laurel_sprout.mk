@@ -22,6 +22,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_p.mk)
 # Inherit some common EvolutionX stuff
 $(call inherit-product, vendor/evolution/config/common_full_phone.mk)
 
+# Enable updating of APEXes
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
 # Inherit from laurel_sprout device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
