@@ -73,6 +73,11 @@ function blob_fixup() {
         odm/lib64/libwvhidl.so | odm/lib64/mediadrm/libwvdrmengine.so | vendor/lib/libssc.so | vendor/lib64/libssc.so | vendor/lib/libsnsapi.so | vendor/lib64/libsnsapi.so | vendor/lib/libsensorcal.so | vendor/lib64/libsensorcal.so | vendor/lib/libsnsdiaglog.so | vendor/lib64/libsnsdiaglog.so | vendor/lib/sensors.ssc.so | vendor/lib64/sensors.ssc.so | vendor/bin/sensors.qti)
             "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite-3.9.1.so" "libprotobuf-cpp-full-3.9.1.so" "${2}"
             ;;
+        # Use VNDK 33 camera.device for camera provider
+        vendor/lib64/android.hardware.camera.provider@2.4-legacy.so)
+            "${PATCHELF_0_8}" --remove-needed "android.hardware.camera.device-V1-ndk.so" "${2}"
+            grep -q "android.hardware.camera.device-V1-ndk-v33.so" "$2" || "${PATCHELF}" --add-needed "android.hardware.camera.device-V1-ndk-v33.so" "${2}"
+            ;;
     esac
 }
 
