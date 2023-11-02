@@ -40,7 +40,7 @@ cc_defaults {
         "clang-analyzer-security*",
     ],
     tidy_flags: [
-        "-tidy_checks_as_errors"
+        "-warnings-as-errors=android-*,clang-analyzer-security*,cert-*"
     ],
 }
 
