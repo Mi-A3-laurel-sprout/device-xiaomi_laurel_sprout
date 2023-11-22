@@ -42,34 +42,4 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     
     <!-- The radius of the enrollment progress bar, in dp -->
     <integer name="config_udfpsEnrollProgressBar" translatable="false">68</integer>
-    
-    <!-- Array of brightness-alpha lut for framework dimming -->
-    <string-array name="config_udfpsDimmingBrightnessAlphaArray" translatable="false">
-          <item>0,255</item>
-          <item>1,226</item>
-          <item>2,218</item>
-          <item>3,211</item>
-          <item>4,207</item>
-          <item>5,202</item>
-          <item>6,199</item>
-          <item>8,192</item>
-          <item>10,187</item>
-          <item>15,176</item>
-          <item>20,167</item>
-          <item>30,153</item>
-          <item>45,136</item>
-          <item>70,115</item>
-          <item>100,95</item>
-          <item>120,84</item>
-          <item>140,74</item>
-          <item>160,65</item>
-          <item>180,57</item>
-          <item>200,49</item>
-          <item>220,41</item>
-          <item>240,34</item>
-          <item>260,28</item>
-    </string-array>
-    
-    <!-- Use framework FOD dimming instead of kernel dimming -->
-    <bool name="config_udfpsFrameworkDimming">true</bool>
 </resources>
