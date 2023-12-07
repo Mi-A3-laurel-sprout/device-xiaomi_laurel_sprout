@@ -25,6 +25,7 @@
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/interfaces \
+    hardware/xiaomi \
     hardware/google/interfaces \
     vendor/qcom/opensource/dataservices
 
@@ -291,8 +292,8 @@ PRODUCT_PACKAGES += \
 # Fingerprint feature
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.laurel_sprout \
-    vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor \
-    libudfpshandler
+    android.hardware.biometrics.fingerprint@2.3.vendor \
+    vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor
 
 # FM
 PRODUCT_PACKAGES += \

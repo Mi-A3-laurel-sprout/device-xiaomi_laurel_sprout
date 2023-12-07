@@ -3,6 +3,7 @@ soong_namespace {
     "hardware/qcom-caf/bootctrl",
     "hardware/google/interfaces",
     "hardware/interfaces",
+    "hardware/xiaomi",
     "vendor/qcom/opensource/dataservices",
     ],
 }
