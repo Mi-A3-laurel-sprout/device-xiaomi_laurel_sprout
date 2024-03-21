@@ -46,7 +46,6 @@ vendor.audio.volume.headset.gain.depcal=true
 audio.sys.noisy.broadcast.delay=500
 audio.sys.mute.latency.factor=2
 audio.sys.routing.latency=0
-audio.offload.min.duration.secs=30
 audio.sys.offload.pstimeout.secs=3
 vendor.audio.feature.afe_proxy.enable=true
 vendor.audio.feature.anc_headset.enable=true
@@ -96,7 +95,7 @@ ro.config.vc_call_vol_steps=7
 # Bluetooth
 persist.vendor.qcom.bluetooth.soc=cherokee
 vendor.qcom.bluetooth.soc=cherokee
-persist.vendor.btstack.enable.twsplus=true 
+persist.vendor.btstack.enable.twsplus=true
 persist.vendor.btstack.enable.twsplussho=true
 ro.bluetooth.a2dp_offload.supported=true
 vendor.audio.feature.a2dp_offload.enable=true
@@ -108,7 +107,6 @@ persist.vendor.camera.preview.ubwc=0
 vendor.video.disable.ubwc=1
 vidc.enc.dcvs.extra-buff-count=2
 camera.disable_zsl_mode=true
-persist.vendor.camera.expose.aux=1
 persist.vendor.camera.HAL3.enabled=1
 persist.vendor.camera.manufacturer=Xiaomi
 persist.vendor.camera.eis.enable=1
@@ -137,7 +135,7 @@ debug.force_no_blanking=true
 debug.sf.latch_unsignaled=1
 debug.sdm.support_writeback=0
 ro.opengles.version=196610
-ro.config.avoid_gfx_accel=true 
+ro.config.avoid_gfx_accel=true
 debug.sf.disable_client_composition_cache=1
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
@@ -158,7 +156,7 @@ ro.surface_flinger.enable_frame_rate_override=false
 
 # IMS
 persist.dbg.volte_avail_ovr=1
-persist.dbg.vt_avail_ovr=1 
+persist.dbg.vt_avail_ovr=1
 persist.dbg.wfc_avail_ovr=1
 
 # FRP
