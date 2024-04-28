@@ -53,6 +53,11 @@ TARGET_GAPPS_ARCH := arm64
 TARGET_SUPPORTS_QUICK_TAP := true
 WITH_GMS := true
 
+# Gapps
+ifeq ($(WITH_GMS), false)
+$(call inherit-product,vendor/gapps/arm64/arm64-vendor.mk)
+endif
+
 # UDFPS animations
 EXTRA_UDFPS_ANIMATIONS := true
 
