@@ -367,7 +367,8 @@ PRODUCT_PACKAGES += \
     init.recovery.qcom.rc \
     init.target.rc \
     init.fingerprint.rc \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    logcat.rc
 
 # IRQ
 PRODUCT_COPY_FILES += \
