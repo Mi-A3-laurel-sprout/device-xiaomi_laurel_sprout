@@ -167,7 +167,9 @@ PRODUCT_PACKAGES += \
     liba2dpoffload \
     libhdmiedid \
     libhfp \
-    libsndmonitor
+    libaudioroute.vendor \
+    libsndmonitor \
+    libstagefright_softomx_plugin.vendor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
@@ -211,6 +213,9 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@1.0.vendor \
     libstdc++_vendor \
     libcamera2ndk_vendor \
+    libpng.vendor \
+    libutilscallstack.vendor \
+    libnetutils.vendor \
     libdng_sdk.vendor
 
 PRODUCT_COPY_FILES += \
@@ -435,7 +440,8 @@ PRODUCT_COPY_FILES += \
 
 # QMI
 PRODUCT_PACKAGES += \
-    libjson
+    libjson \
+    libion.vendor
 
 # Perf
 PRODUCT_PACKAGES += \
@@ -464,6 +470,12 @@ PRODUCT_PACKAGES += \
     rild \
     librmnetctl \
     libxml2
+
+PRODUCT_PACKAGES += \
+    libcurl.vendor \
+    libjsoncpp.vendor \
+    libsqlite.vendor \
+    libssl.vendor
 
 PRODUCT_PACKAGES += \
     ims-ext-common \
