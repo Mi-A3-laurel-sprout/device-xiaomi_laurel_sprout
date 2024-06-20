@@ -26,7 +26,8 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/interfaces \
     hardware/google/interfaces \
-    vendor/qcom/opensource/dataservices
+    vendor/qcom/opensource/dataservices \
+    hardware/xiaomi
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
