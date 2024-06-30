@@ -62,6 +62,7 @@ PRODUCT_PACKAGES += \
     AOSPALaurelSettings \
     AOSPALaurelSystemUI \
     DisplayFeaturesLAUREL \
+    DeviceAsWebcamLAUREL \
     LaurelCarrierConfigOverlay \
     LaurelFrameworks \
     LaurelSystemUI
@@ -435,6 +436,10 @@ PRODUCT_PACKAGES_DEBUG += \
 PRODUCT_PACKAGES += \
     libipanat \
     liboffloadhal
+
+# USB
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.usb.uvc.enabled=true
 
 # VNDK
 BOARD_SHIPPING_API_LEVEL := 30
