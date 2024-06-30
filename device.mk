@@ -78,6 +78,7 @@ PRODUCT_PACKAGES += \
     XiaomiFrameworks \
     XiaomiSystemUI \
     DisplayFeaturesLAUREL \
+    DeviceAsWebcamLAUREL \
     UdfpsSystemUI \
     RCMSystemUI \
     RCMFramework
