@@ -59,7 +59,7 @@ $(call inherit-product,vendor/gapps/arm64/arm64-vendor.mk)
 endif
 
 # UDFPS animations
-EXTRA_UDFPS_ANIMATIONS := true
+TARGET_HAS_UDFPS := true
 
 # Use gestures by default
 PRODUCT_PRODUCT_PROPERTIES += \
