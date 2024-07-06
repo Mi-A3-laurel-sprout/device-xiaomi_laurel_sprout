@@ -101,23 +101,16 @@ vendor/lib64/vendor.qti.hardware.alarm@1.0.so|65d369e6c7ee6b024599c02db9103d6df1
 
 # Audio
 vendor/lib/soundfx/libshoebox.so
-vendor/lib/libAlacSwDec.so
-vendor/lib/libApeSwDec.so
-vendor/lib/libFlacSwDec.so
 vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxAlacDec.so
-vendor/lib/libOmxAlacDecSw.so
 vendor/lib/libOmxAmrDec.so
 vendor/lib/libOmxAmrwbplusDec.so
 vendor/lib/libOmxApeDec.so
-vendor/lib/libOmxApeDecSw.so
 vendor/lib/libOmxDsdDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxG711Dec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxWmaDec.so
-vendor/lib/libOmxSwVdec.so
-vendor/lib/libOmxSwVencMpeg4.so
 vendor/lib/libdsd2pcm.so
 vendor/lib/libmulawdec.so
 vendor/lib/libstagefright_soft_qtiflacdec.so
@@ -129,22 +122,15 @@ vendor/lib/libdrc.so
 vendor/lib/libqtigef.so
 vendor/lib/libsurround_3mic_proc.so
 vendor/lib64/soundfx/libshoebox.so
-vendor/lib64/libAlacSwDec.so
-vendor/lib64/libApeSwDec.so
-vendor/lib64/libFlacSwDec.so
 vendor/lib64/libOmxAacDec.so
 vendor/lib64/libOmxAlacDec.so
-vendor/lib64/libOmxAlacDecSw.so
 vendor/lib64/libOmxAmrDec.so
 vendor/lib64/libOmxAmrwbplusDec.so
 vendor/lib64/libOmxApeDec.so
-vendor/lib64/libOmxApeDecSw.so
 vendor/lib64/libOmxEvrcDec.so
 vendor/lib64/libOmxG711Dec.so
 vendor/lib64/libOmxQcelp13Dec.so
 vendor/lib64/libOmxWmaDec.so
-vendor/lib64/libOmxSwVdec.so
-vendor/lib64/libOmxSwVencMpeg4.so
 vendor/lib64/libmulawdec.so
 vendor/lib64/libstagefright_soft_qtiflacdec.so
 vendor/lib64/vendor.qti.voiceprint@1.0.so
@@ -815,18 +801,14 @@ vendor/lib/libsmwrapper.so
 # Media - LA.UM.9.11.r1-04500-NICOBAR.0
 vendor/lib/libI420colorconvert.so|976e00c9e8966e4c7100099666846770d34f4153
 vendor/lib/libmm-color-convertor.so|22d7b8f77d0f19826743206d79bdf9a6a8c9e18f
-vendor/lib/libswvdec.so|3b6afa4843901dd27c98e13344b0fd4b828ca2c3
 vendor/lib/vendor.qti.hardware.vpp@1.1.so|d3390ff80287d5b5455391315710e09a9fa916e3
 vendor/lib/vendor.qti.hardware.vpp@1.2.so|add78a07a84d8c156aac20e85374d5e4ed278e32
 vendor/lib/vendor.qti.hardware.vpp@1.3.so|ff0ccc8c858f12d052a9dde1170f2700a8480ae9
 vendor/lib64/libI420colorconvert.so|e2d682f83c8f55276836903aa7701ef201edcc83
 vendor/lib64/libmm-color-convertor.so|f169b7f24612b9a0c93b9d2eeb29cec04b0e4ec8
-vendor/lib64/libswvdec.so|88ccaf08f803029dcd6cd64d2433968569c591b8
 vendor/lib64/vendor.qti.hardware.vpp@1.1.so|3c03d83e1edc7d7e6b48c5d680efd50cd9e17646
 vendor/lib64/vendor.qti.hardware.vpp@1.2.so|a38c2961f2c2256da36ae917561dad0c85ac7110
 vendor/lib64/vendor.qti.hardware.vpp@1.3.so|b6e10f24e580e36478626fb755827010a8b018d6
--vendor/lib/libMpeg4SwEncoder.so|92698c2830156bbca6297ad599d9e0f916139f00
--vendor/lib64/libMpeg4SwEncoder.so|46cca30c76db78d8c5d6b99c2c7e5a00c414bc4f
 
 # Media configs
 odm/etc/media_profiles_V1_0.xml
