@@ -14,9 +14,9 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/derp_laurel_sprout.mk
+    $(LOCAL_DIR)/statix_laurel_sprout.mk
 
 COMMON_LUNCH_CHOICES := \
-    derp_laurel_sprout-user \
-    derp_laurel_sprout-userdebug \
-    derp_laurel_sprout-eng
+    statix_laurel_sprout-user \
+    statix_laurel_sprout-userdebug \
+    statix_laurel_sprout-eng
