@@ -387,6 +387,14 @@ PRODUCT_COPY_FILES += \
 # Kernel
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := true
 
+TARGET_KERNEL_DIR ?= device/xiaomi/laurel_sprout-kernel
+LOCAL_KERNEL := $(TARGET_KERNEL_DIR)/Image
+
+PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
+
+# Kernel Headers
+PRODUCT_VENDOR_KERNEL_HEADERS := $(TARGET_KERNEL_DIR)/sm8150/kernel-headers
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.xiaomi_trinket
