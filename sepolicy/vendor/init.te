@@ -13,6 +13,6 @@ allow init adsprpcd_file:file mounton;
 allow init per_boot_file:file ioctl;
 
 # Smart charging
-allow init sysfs_battery_supply:file { setattr };
+allow init vendor_sysfs_battery_supply:file { setattr };
 
 allow init sysfs_displayfeatures:file { setattr };
