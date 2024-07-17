@@ -441,6 +441,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_VENDOR_PROPERTIES += \
     ro.usb.uvc.enabled=true
 
+PRODUCT_HAS_GADGET_HAL := true
+
+PRODUCT_ODM_PROPERTIES += \
+    sys.usb.mtp.batchcancel=1 \
+    vendor.usb.use_gadget_hal=1 \
+    vendor.usb.use_ffs_mtp=1
+
 # VNDK
 BOARD_SHIPPING_API_LEVEL := 30
 
