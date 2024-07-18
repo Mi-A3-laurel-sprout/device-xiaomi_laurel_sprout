@@ -65,5 +65,3 @@
 
 # Vibrator
 /(vendor|system/vendor)/bin/hw/vendor\.qti\.hardware\.vibrator\.service\.xiaomi        u:object_r:hal_vibrator_default_exec:s0
-
-/sys/class/scsi_host(/.*)?    u:object_r:sysfs_scsi_host:s0

@@ -1,1 +1,6 @@
 allow system_app sysfs_displayfeatures:file rw_file_perms;
+
+# Suspend
+dontaudit system_app system_suspend_control_service:service_manager { find };
+dontaudit system_app system_suspend_control_internal_service:service_manager { find };
+dontaudit system_app tracingproxy_service:service_manager { find }; 
