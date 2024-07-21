@@ -622,6 +622,9 @@ PRODUCT_PACKAGES += \
 # Inherit proprietary files
 $(call inherit-product-if-exists, vendor/xiaomi/laurel_sprout/laurel_sprout-vendor.mk)
 
+# Inherit Additional Pixel stuffs
+$(call inherit-product-if-exists, vendor/google/pixel-additional/config.mk)
+
 #Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/lahaina-yupikqrd-snd-card_Button_Jack.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/lahaina-yupikqrd-snd-card_Button_Jack.kl
