@@ -10,9 +10,16 @@ LOCAL_OVERRIDES_PACKAGES := \
 		PrebuiltGmail \
 		RecorderPrebuilt \
 		talkback \
+		Velvet \
 		CalculatorGooglePrebuilt \
-		Chrome \
-		Chrome-Stub \
+                RadioConfigLib \
+                Chrome-Stub \
+                TrichromeLibrary \
+                TipsPrebuilt \
+                OdadPrebuilt \
+                DCMO \
+                ConnMO \
+                MeetPrebuilt \
 		YouTube
 
 LOCAL_UNINSTALLABLE_MODULE := true
