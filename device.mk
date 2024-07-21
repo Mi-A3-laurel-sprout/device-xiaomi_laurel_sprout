@@ -395,7 +395,7 @@ PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := true
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.xiaomi_trinket
+    android.hardware.light@2.0-service.xiaomi
 
 # LiveDisplay native
 PRODUCT_PACKAGES += \
