@@ -356,9 +356,19 @@ PRODUCT_PACKAGES += \
 # HIDL VNDK
 $(foreach target, $(shell cat $(LOCAL_PATH)/configs/vndk/vndk.txt), $(eval PRODUCT_PACKAGES += $(target).vendor))
 
+# IOP
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    vendor.enable_prefetch=1 \
+    vendor.iop.enable_uxe=1 \
+    vendor.iop.enable_prefetch_ofr=1 \
+    vendor.perf.iop_v3.enable=1 \
+    ro.vendor.at_library=libqti-at.so \
+    persist.vendor.qti.games.gt.prof=1
+
 # Init
 PRODUCT_PACKAGES += \
     fstab.qcom \
+    init.laurel.perf.rc \
     init.class_main.sh \
     init.msm.usb.configfs.rc \
     init.qcom.early_boot.sh \
@@ -438,11 +448,14 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.3-service.laurel_sprout-libperfmgr
+    android.hardware.power-service-qti \
+    vendor.qti.hardware.perf@2.2.vendor\
+    android.hardware.power@1.3.vendor
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json \
-    $(LOCAL_PATH)/configs/perf/perf-profile0.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile0.conf
+    $(LOCAL_PATH)/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml \
+    $(LOCAL_PATH)/configs/perf/perf-profile0.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile0.conf \
+    $(LOCAL_PATH)/configs/perf/perfboostsconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfboostsconfig.xml
 
 # Public Libraries
 PRODUCT_COPY_FILES += \
@@ -456,10 +469,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libjson \
     libion.vendor
-
-# Perf
-PRODUCT_PACKAGES += \
-    libqti-perfd-client
 
 # Protobuf
 PRODUCT_PACKAGES += \
