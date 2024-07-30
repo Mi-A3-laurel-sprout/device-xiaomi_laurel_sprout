@@ -1,5 +1,5 @@
 #!/vendor/bin/sh
-# Copyright (c) 2012-2018, The Linux Foundation. All rights reserved.
+# Copyright (c) 2012-2018, 2020-2021 The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -28,6 +28,11 @@
 #
 #
 
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+#
+
 # Set platform variables
 soc_hwplatform=`cat /sys/devices/soc0/hw_platform 2> /dev/null`
 soc_machine=`cat /sys/devices/soc0/machine 2> /dev/null`
@@ -43,23 +48,21 @@ esoc_name=`cat /sys/bus/esoc/devices/esoc0/esoc_name 2> /dev/null`
 
 target=`getprop ro.board.platform`
 
-if [ -f /sys/class/android_usb/f_mass_storage/lun/nofua ]; then
-	echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
-fi
-
-debuggable=`getprop ro.debuggable`
 #
 # Override USB default composition
 #
 # If USB persist config not set, set default configuration
-if [ "$(getprop persist.vendor.usb.config)" == "" -a \
-	"$(getprop init.svc.vendor.usb-gadget-hal-1-0)" != "running" ]; then
+if [ "$(getprop persist.vendor.usb.config)" == "" -a "$(getprop ro.build.type)" != "user" ]; then
     if [ "$esoc_name" != "" ]; then
 	  setprop persist.vendor.usb.config diag,diag_mdm,qdss,qdss_mdm,serial_cdev,dpl,rmnet,adb
     else
 	  case "$(getprop ro.baseband)" in
 	      "apq")
-	          setprop persist.vendor.usb.config diag,adb
+	        if [ "$target" == "neo" ] || [ "$target" == "anorak" ]; then
+			setprop persist.vendor.usb.config diag,qdss,adb
+		else
+			setprop persist.vendor.usb.config diag,adb
+		fi
 	      ;;
 	      *)
 	      case "$soc_hwplatform" in
@@ -103,16 +106,27 @@ if [ "$(getprop persist.vendor.usb.config)" == "" -a \
 	              "msm8998" | "sdm660" | "apq8098_latv")
 		          setprop persist.vendor.usb.config diag,serial_cdev,rmnet,adb
 		      ;;
+	              "monaco")
+		          setprop persist.vendor.usb.config diag,qdss,rmnet,adb
+		      ;;
 	              "sdm845" | "sdm710")
 		          setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,adb
 		      ;;
-	              "msmnile" | "sm6150" | "trinket" | "lito" | "atoll" | "laurus" | "laurel_sprout")
-			  # setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,qdss,adb
-                          if [ -z "$debuggable" -o "$debuggable" = "1"  ]; then
-                              setprop persist.vendor.usb.config adb
-                          else
-                              setprop persist.vendor.usb.config none
-                          fi
+	              "msmnile")
+		               case "$soc_id" in
+			               "362" | "367")
+			                  setprop persist.vendor.usb.config diag,adb
+			               ;;
+			               *)
+			                  setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,qdss,adb
+			               ;;
+		               esac
+		      ;;
+	              "gen4")
+			  setprop persist.vendor.usb.config adb
+		      ;;
+	              "sm6150" | "trinket" | "lito" | "atoll" | "bengal" | "lahaina" | "holi" | "taro" | "parrot" | "ravelin" | "kalama" | "crow")
+			  setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,qdss,adb
 		      ;;
 	              *)
 		          setprop persist.vendor.usb.config diag,adb
@@ -125,6 +139,12 @@ if [ "$(getprop persist.vendor.usb.config)" == "" -a \
 	      ;;
 	  esac
       fi
+fi
+
+# This check is needed for GKI 1.0 targets where QDSS is not available
+if [ "$(getprop persist.vendor.usb.config)" == "diag,serial_cdev,rmnet,dpl,qdss,adb" -a \
+     ! -d /config/usb_gadget/g1/functions/qdss.qdss ]; then
+      setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,adb
 fi
 
 # Start peripheral mode on primary USB controllers for Automotive platforms
@@ -141,27 +161,13 @@ case "$soc_machine" in
     ;;
 esac
 
-# set rndis transport to BAM2BAM_IPA for 8920 and 8940
-if [ "$target" == "msm8937" ]; then
-	if [ ! -d /config/usb_gadget ]; then
-	   case "$soc_id" in
-		"313" | "320")
-		   echo BAM2BAM_IPA > /sys/class/android_usb/android0/f_rndis_qc/rndis_transports
-		;;
-		*)
-		;;
-	   esac
-	fi
-fi
-
 # check configfs is mounted or not
 if [ -d /config/usb_gadget ]; then
-	# Chip-serial is used for unique MSM identification in Product string
-	msm_serial=`cat /sys/devices/soc0/serial_number`;
-	msm_serial_hex=`printf %08X $msm_serial`
-	machine_type=`cat /sys/devices/soc0/machine`
-	product_string="$machine_type-$soc_hwplatform _SN:$msm_serial_hex"
-	echo "$(getprop ro.product.model)" > /config/usb_gadget/g1/strings/0x409/product
+	usb_product=`getprop vendor.usb.product_string`;
+	vendor_model=`getprop ro.product.vendor.model`;
+	if [ "$usb_product" == "" ]; then
+		setprop vendor.usb.product_string "$vendor_model"
+	fi
 
 	# ADB requires valid iSerialNumber; if ro.serialno is missing, use dummy
 	serialnumber=`cat /config/usb_gadget/g1/strings/0x409/serialnumber 2> /dev/null`
@@ -192,54 +198,33 @@ esac
 # Initialize UVC conifguration.
 #
 if [ -d /config/usb_gadget/g1/functions/uvc.0 ]; then
-	cd /config/usb_gadget/g1/functions/uvc.0
-
-	echo 3072 > streaming_maxpacket
-	echo 1 > streaming_maxburst
-	mkdir control/header/h
-	ln -s control/header/h control/class/fs/
-	ln -s control/header/h control/class/ss
-
-	mkdir -p streaming/uncompressed/u/360p
-	echo "666666\n1000000\n5000000\n" > streaming/uncompressed/u/360p/dwFrameInterval
-
-	mkdir -p streaming/uncompressed/u/720p
-	echo 1280 > streaming/uncompressed/u/720p/wWidth
-	echo 720 > streaming/uncompressed/u/720p/wWidth
-	echo 29491200 > streaming/uncompressed/u/720p/dwMinBitRate
-	echo 29491200 > streaming/uncompressed/u/720p/dwMaxBitRate
-	echo 1843200 > streaming/uncompressed/u/720p/dwMaxVideoFrameBufferSize
-	echo 5000000 > streaming/uncompressed/u/720p/dwDefaultFrameInterval
-	echo "5000000\n" > streaming/uncompressed/u/720p/dwFrameInterval
-
-	mkdir -p streaming/mjpeg/m/360p
-	echo "666666\n1000000\n5000000\n" > streaming/mjpeg/m/360p/dwFrameInterval
-
-	mkdir -p streaming/mjpeg/m/720p
-	echo 1280 > streaming/mjpeg/m/720p/wWidth
-	echo 720 > streaming/mjpeg/m/720p/wWidth
-	echo 29491200 > streaming/mjpeg/m/720p/dwMinBitRate
-	echo 29491200 > streaming/mjpeg/m/720p/dwMaxBitRate
-	echo 1843200 > streaming/mjpeg/m/720p/dwMaxVideoFrameBufferSize
-	echo 5000000 > streaming/mjpeg/m/720p/dwDefaultFrameInterval
-	echo "5000000\n" > streaming/mjpeg/m/720p/dwFrameInterval
-
-	echo 0x04 > /config/usb_gadget/g1/functions/uvc.0/streaming/mjpeg/m/bmaControls
-
-	mkdir -p streaming/h264/h/960p
-	echo 1920 > streaming/h264/h/960p/wWidth
-	echo 960 > streaming/h264/h/960p/wWidth
-	echo 40 > streaming/h264/h/960p/bLevelIDC
-	echo "333667\n" > streaming/h264/h/960p/dwFrameInterval
-
-	mkdir -p streaming/h264/h/1920p
-	echo "333667\n" > streaming/h264/h/1920p/dwFrameInterval
-
-	mkdir streaming/header/h
-	ln -s streaming/uncompressed/u streaming/header/h
-	ln -s streaming/mjpeg/m streaming/header/h
-	ln -s streaming/h264/h streaming/header/h
-	ln -s streaming/header/h streaming/class/fs/
-	ln -s streaming/header/h streaming/class/hs/
-	ln -s streaming/header/h streaming/class/ss/
+	setprop vendor.usb.uvc.function.init 1
 fi
+
+if [ -d /config/usb_gadget/g1/functions/uac2.0 ]; then
+	setprop vendor.usb.uac2.function.init 1
+fi
+
+# enable ncm
+case "$target" in
+"neo" | "anorak")
+	if [ -d /config/usb_gadget/g1/functions/ncm.gs6 ]; then
+		cd /config/usb_gadget/g1/functions/ncm.gs6
+
+		echo WINNCM > os_desc/interface.ncm/compatible_id
+	fi
+    ;;
+esac
+
+#Configure class, subclass, protocol for RNDIS SW path to be detected by Windows
+case "$target" in
+"anorak")
+	if [ -d /config/usb_gadget/g1/functions/rndis.rndis ]; then
+		cd /config/usb_gadget/g1/functions/rndis.rndis
+
+		echo ef > class
+		echo 4 > subclass
+		echo 1 > protocol
+	fi
+    ;;
+esac
