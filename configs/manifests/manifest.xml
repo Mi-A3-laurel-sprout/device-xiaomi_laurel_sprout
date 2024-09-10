@@ -25,9 +25,9 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<manifest version="1.0" type="device" target-level="5">
+<manifest version="1.0" type="device" target-level="4">
     <hal format="hidl">
-        <name>android.frameworks.sensorservice</name>
+        <name>android.frameworks.sensorservice</name> 
         <transport>hwbinder</transport>
         <fqname>@1.0::ISensorManager/default</fqname>
     </hal>
@@ -54,6 +54,12 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <name>android.hardware.renderscript</name>
         <transport arch="32+64">passthrough</transport>
         <fqname>@1.0::IDevice/default</fqname>
+    </hal>
+    <!-- Configstore -->
+    <hal format="hidl">
+        <name>android.hardware.configstore</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.1::ISurfaceFlingerConfigs/default</fqname>
     </hal>
     <!-- display -->
     <hal format="hidl">

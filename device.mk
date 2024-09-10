@@ -26,10 +26,8 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/interfaces \
     hardware/google/interfaces \
-    vendor/qcom/opensource/dataservices
-
-# Add common definitions for Qualcomm
-$(call inherit-product, hardware/qcom-caf/common/common.mk)
+    vendor/qcom/opensource/dataservices \
+    hardware/xiaomi
 
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
@@ -77,7 +75,6 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_PACKAGES += \
     XiaomiFrameworks \
     XiaomiSystemUI \
-    DisplayFeaturesLAUREL \
     UdfpsSystemUI \
     RCMSystemUI \
     RCMFramework
@@ -170,9 +167,7 @@ PRODUCT_PACKAGES += \
     liba2dpoffload \
     libhdmiedid \
     libhfp \
-    libaudioroute.vendor \
-    libsndmonitor \
-    libstagefright_softomx_plugin.vendor
+    libsndmonitor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
@@ -202,6 +197,8 @@ PRODUCT_PACKAGES += \
     com.dsi.ant@1.0.vendor
 
 # Camera
+$(call inherit-product, vendor/miuicamera/config.mk)
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
@@ -216,11 +213,6 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@1.0.vendor \
     libstdc++_vendor \
     libcamera2ndk_vendor \
-    libpiex \
-    libpiex_shim \
-    libpng.vendor \
-    libutilscallstack.vendor \
-    libnetutils.vendor \
     libdng_sdk.vendor
 
 PRODUCT_COPY_FILES += \
@@ -244,11 +236,7 @@ PRODUCT_COPY_FILES += \
 
 # Config Store
 PRODUCT_PACKAGES += \
-    android.hardware.configstore@1.1-service
-
-# Configstore
-PRODUCT_PACKAGES += \
-    disable_configstore
+    android.hardware.configstore@1.1-service 
 
 # Display
 PRODUCT_PACKAGES += \
@@ -282,10 +270,6 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.mapper@2.0.vendor \
     vendor.qti.hardware.display.mapper@4.0.vendor
 
-# DisplayFeatures
-PRODUCT_PACKAGES += \
-    DisplayFeatures
-
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.4.vendor \
@@ -293,10 +277,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl
-
-# Lineage Health
-PRODUCT_PACKAGES += \
-    vendor.lineage.health-service.default
 
 # Fingerprint feature
 PRODUCT_PACKAGES += \
@@ -352,11 +332,15 @@ endif
 
 # HIDL
 PRODUCT_PACKAGES += \
+    android.hidl.base@1.0 \
     android.hidl.base@1.0.vendor \
-    android.hidl.manager@1.0.vendor
-
+    android.hidl.base@1.0_system \
+    android.hidl.manager@1.0
+  
 # HIDL VNDK
 $(foreach target, $(shell cat $(LOCAL_PATH)/configs/vndk/vndk.txt), $(eval PRODUCT_PACKAGES += $(target).vendor))
+
+PRODUCT_EXTRA_VNDK_VERSIONS := 31 32 33
 
 # Init
 PRODUCT_PACKAGES += \
@@ -381,9 +365,6 @@ PRODUCT_COPY_FILES += \
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
-
-# Kernel
-PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := true
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -445,8 +426,7 @@ PRODUCT_COPY_FILES += \
 
 # QMI
 PRODUCT_PACKAGES += \
-    libjson \
-    libion.vendor
+    libjson
 
 # Perf
 PRODUCT_PACKAGES += \
@@ -477,14 +457,9 @@ PRODUCT_PACKAGES += \
     libxml2
 
 PRODUCT_PACKAGES += \
-    libcurl.vendor \
-    libjsoncpp.vendor \
-    libsqlite.vendor \
-    libssl.vendor
-
-PRODUCT_PACKAGES += \
     ims-ext-common \
     ims_ext_common.xml \
+    libgui_shim \
     qti-telephony-hidl-wrapper \
     qti_telephony_hidl_wrapper.xml \
     qti-telephony-utils \
@@ -494,10 +469,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
-# Shim
-PRODUCT_PACKAGES += \
-    libims_shim
-
 # Seccomp policy
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
@@ -505,10 +476,10 @@ PRODUCT_COPY_FILES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.1-service.multihal \
-    libsensorndkbridge \
     android.frameworks.sensorservice@1.0 \
     android.frameworks.sensorservice@1.0.vendor \
+    android.hardware.sensors@2.1-service.multihal \
+    libsensorndkbridge \
     android.hardware.sensors@2.1.vendor
 
 # Update engine
@@ -539,28 +510,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service
 
-# USB Debugging
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb \
-    ro.adb.secure=0 \
-    ro.secure=0 \
-    ro.debuggable=1
-
 # Vibrator
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service
+    vendor.qti.hardware.vibrator.service.xiaomi
 
 # VNDK
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so
-
-
-PRODUCT_PRODUCT_VNDK_VERSION := current
-PRODUCT_ENFORCE_PRODUCT_PARTITION_INTERFACE := true
-
-PRODUCT_PACKAGES += \
-    vndk_package \
-    com.android.vndk.current.on_vendor
 
 PRODUCT_PACKAGES += \
     libfmq \
@@ -583,10 +539,6 @@ PRODUCT_PACKAGES += \
     WifiOverlay \
     wpa_supplicant \
     wpa_supplicant.conf
-
-PRODUCT_PACKAGES += \
-    firmware_WCNSS_qcom_cfg.ini_symlink \
-    firmware_wlan_mac.bin_symlink
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \

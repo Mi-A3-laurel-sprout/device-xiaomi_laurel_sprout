@@ -15,4 +15,3 @@ allow init per_boot_file:file ioctl;
 # Smart charging
 allow init sysfs_battery_supply:file { setattr };
 
-allow init sysfs_displayfeatures:file { setattr };

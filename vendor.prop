@@ -46,6 +46,7 @@ vendor.audio.volume.headset.gain.depcal=true
 audio.sys.noisy.broadcast.delay=500
 audio.sys.mute.latency.factor=2
 audio.sys.routing.latency=0
+audio.offload.min.duration.secs=30
 audio.sys.offload.pstimeout.secs=3
 vendor.audio.feature.afe_proxy.enable=true
 vendor.audio.feature.anc_headset.enable=true
@@ -95,7 +96,7 @@ ro.config.vc_call_vol_steps=7
 # Bluetooth
 persist.vendor.qcom.bluetooth.soc=cherokee
 vendor.qcom.bluetooth.soc=cherokee
-persist.vendor.btstack.enable.twsplus=true
+persist.vendor.btstack.enable.twsplus=true 
 persist.vendor.btstack.enable.twsplussho=true
 ro.bluetooth.a2dp_offload.supported=true
 vendor.audio.feature.a2dp_offload.enable=true
@@ -103,28 +104,33 @@ ro.vendor.bluetooth.wipower=false
 
 # Camera
 persist.vendor.camera.expose.aux=1
-persist.vendor.camera.preview.ubwc=0
-vendor.video.disable.ubwc=1
-vidc.enc.dcvs.extra-buff-count=2
-camera.disable_zsl_mode=true
+#persist.vendor.camera.preview.ubwc=0
+#vendor.video.disable.ubwc=1
+#vidc.enc.dcvs.extra-buff-count=2
+#camera.disable_zsl_mode=true
 persist.vendor.camera.HAL3.enabled=1
 persist.vendor.camera.manufacturer=Xiaomi
 persist.vendor.camera.eis.enable=1
 vendor.camera.not.cts.apk=1
 vendor.camera.not.ctsverify.apk=1
 persist.vendor.camera.perflock.enable=0
+persist.vendor.camera.mpo.disabled=1
+persist.vendor.camera.isp.clock.optmz=0
+persist.vendor.camera.isp.turbo=1
+persist.vendor.camera.imglib.usefdlite=1
+persist.vendor.dualcam.lpm.enable=0
 
 # Chipset
 ro.soc.manufacturer=Qualcomm
 ro.soc.model=SM6125
 
 # Crypto
-ro.crypto.dm_default_key.options_format.version=1
+ro.crypto.dm_default_key.options_format.version=2
+ro.crypto.volume.filenames_mode=aes-256-cts
 ro.crypto.volume.metadata.method=dm-default-key
-ro.crypto.volume.options=::v1
+ro.crypto.volume.options=::v2
 
 # Display
-debug.sf.auto_latch_unsignaled=0
 debug.sf.early_app_phase_offset_ns=1500000
 debug.sf.early_gl_app_phase_offset_ns=15000000
 debug.sf.early_gl_phase_offset_ns=3000000
@@ -135,7 +141,7 @@ debug.force_no_blanking=true
 debug.sf.latch_unsignaled=1
 debug.sdm.support_writeback=0
 ro.opengles.version=196610
-ro.config.avoid_gfx_accel=true
+ro.config.avoid_gfx_accel=true 
 debug.sf.disable_client_composition_cache=1
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
@@ -156,7 +162,7 @@ ro.surface_flinger.enable_frame_rate_override=false
 
 # IMS
 persist.dbg.volte_avail_ovr=1
-persist.dbg.vt_avail_ovr=1
+persist.dbg.vt_avail_ovr=1 
 persist.dbg.wfc_avail_ovr=1
 
 # FRP

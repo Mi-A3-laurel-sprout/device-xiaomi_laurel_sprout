@@ -222,8 +222,6 @@ on boot
     # limit discard size to 128MB in order to avoid long IO latency
     write /sys/block/sda/queue/discard_max_bytes 134217728
 
-    setprop init.svc.console stopped
-
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/vendor/misc 01771 system system
@@ -1035,3 +1033,16 @@ service vendor.contexthub-hal-1-0 /vendor/bin/hw/android.hardware.contexthub@1.0
 on property:vendor.post_boot.parsed=1
     chown system system /sys/class/power_supply/battery/input_suspend
     chmod 0666 /sys/class/power_supply/battery/input_suspend
+
+#workaround for camera HAL can not read sys property
+on property:sys.camera.face.unlock=*
+    setprop vendor.camera.face.unlock ${sys.camera.face.unlock}
+#add MIUI camera flag
+on property:sys.camera.miui.apk=*
+    setprop vendor.camera.miui.apk ${sys.camera.miui.apk}
+#add cts camera flag
+on property:sys.camera.not.cts.apk=*
+    setprop vendor.camera.not.cts.apk ${sys.camera.not.cts.apk}
+#add cts verify flag
+on property:sys.camera.not.ctsverify.apk=*
+    setprop vendor.camera.not.ctsverify.apk ${sys.camera.not.ctsverify.apk}

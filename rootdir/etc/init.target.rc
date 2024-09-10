@@ -71,9 +71,6 @@ on fs
 
     mkdir /mnt/vendor/persist/goodix 0777 system system
 
-    # Mount RW partitions which need run fsck
-    mount_all /vendor/etc/fstab.qcom --late
-
 on post-fs
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
@@ -82,9 +79,8 @@ on early-boot
     write /dev/ipa 1
 
 on late-fs
-    # Wait for keymaster
+    wait_for_prop hwservicemanager.ready true
     exec_start wait_for_keymaster
-
     mount_all /vendor/etc/fstab.qcom --late
 
 service sec_nvm /vendor/bin/sec_nvm
@@ -132,10 +128,6 @@ on boot
 # Displayfeature for android_one
     chown system system /sys/class/backlight/panel0-backlight/brightness_clone
 
-    # Lineage Health
-    chmod 0660 /sys/class/power_supply/battery/input_suspend
-    chown system system /sys/class/power_supply/battery/input_suspend
-
 # access permissions for FPC service
     chown system system /sys/bus/platform/devices/soc/soc:fpc1020/irq
     chown system system /sys/bus/platform/devices/soc/soc:fpc1020/wakeup_enable
@@ -162,14 +154,6 @@ on boot
 #Load WLAN driver
     insmod /vendor/lib/modules/qca_cld3_wlan.ko
 
-    # Allow system to manipulate DC Dim, HBM and FPS Counter nodes
-    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display/dc_dimming
-    chmod 0660 /sys/devices/platform/soc/soc:qcom,dsi-display/dc_dimming
-    chown system system /sys/devices/platform/soc/soc:qcom,dsi-display/hbm
-    chmod 0660 /sys/devices/platform/soc/soc:qcom,dsi-display/hbm
-    chown system graphics /sys/devices/platform/soc/5e00000.qcom,mdss_mdp/drm/card0/sde-crtc-0/measured_fps
-    chmod 0660 /sys/devices/platform/soc/5e00000.qcom,mdss_mdp/drm/card0/sde-crtc-0/measured_fps
-
 #USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
     setprop vendor.usb.rmnet.func.name "gsi"
@@ -178,7 +162,7 @@ on boot
     setprop vendor.usb.qdss.inst.name "qdss"
     setprop sys.usb.configfs 1
 
-    # Restrict permissions to socket file
+    # Restrict permissions to socket file 
     # to hide Magisk & co.
     chmod 440 /proc/net/unix
 

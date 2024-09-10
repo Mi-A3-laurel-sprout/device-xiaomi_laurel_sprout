@@ -27,7 +27,7 @@ source "${HELPER}"
 function blob_fixup() {
     case "${1}" in
         system_ext/lib64/lib-imsvideocodec.so)
-            "${PATCHELF}" --add-needed "libims_shim.so" "${2}"
+            "${PATCHELF}" --add-needed "libgui_shim.so" "${2}"
             ;;
         vendor/lib/miwatermark.so)
             "${PATCHELF}" --add-needed "miwatermark_vendor.so" "${2}"
@@ -35,6 +35,9 @@ function blob_fixup() {
         vendor/lib64/libvendor.goodix.hardware.biometrics.fingerprint@2.1.so)
             "${PATCHELF}" --remove-needed "libhidlbase.so" "${2}"
             sed -i "s/libhidltransport.so/libhidlbase-v32.so\x00/" "${2}"
+            ;;
+        vendor/lib64/mediadrm/libwvdrmengine.so | vendor/lib/mediadrm/libwvdrmengine.so | vendor/lib64/libwvhidl.so)
+         "${PATCHELF}"  --replace-needed "libprotobuf-cpp-lite-3.9.1.so" "libprotobuf-cpp-full-3.9.1.so" "${2}"
             ;;
     esac
 }
@@ -67,14 +70,6 @@ done
 if [ -z "${SRC}" ]; then
     SRC="adb"
 fi
-
-function blob_fixup() {
-    case "${1}" in
-        odm/lib64/libwvhidl.so | odm/lib64/mediadrm/libwvdrmengine.so | vendor/lib/libssc.so | vendor/lib64/libssc.so | vendor/lib/libsnsapi.so | vendor/lib64/libsnsapi.so | vendor/lib/libsensorcal.so | vendor/lib64/libsensorcal.so | vendor/lib/libsnsdiaglog.so | vendor/lib64/libsnsdiaglog.so | vendor/lib/sensors.ssc.so | vendor/lib64/sensors.ssc.so | vendor/bin/sensors.qti)
-            "${PATCHELF}" --replace-needed "libprotobuf-cpp-lite-3.9.1.so" "libprotobuf-cpp-full-3.9.1.so" "${2}"
-            ;;
-    esac
-}
 
 # Initialize the helper
 setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"

@@ -39,15 +39,15 @@ AB_OTA_PARTITIONS += \
     vbmeta \
     vendor
 
+# APEX
+#DEXPREOPT_GENERATE_APEX_IMAGE := true
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1560
 TARGET_SCREEN_WIDTH := 720
 
-# Board Info
-TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
-
 # Display
-TARGET_SCREEN_DENSITY := 320
+TARGET_SCREEN_DENSITY := 296
 TARGET_NEEDS_RAW10_BUFFER_FIX := true
 
 # Bootloader
@@ -55,9 +55,8 @@ TARGET_BOOTLOADER_BOARD_NAME := trinket
 TARGET_NO_BOOTLOADER := true
 
 #Compression
-PRODUCT_FS_COMPRESSION := 1
-BOARD_EROFS_COMPRESSOR := lz4hc,9
-BOARD_EROFS_PCLUSTER_SIZE := 65536
+BOARD_EROFS_COMPRESSOR := lz4
+BOARD_EROFS_PCLUSTER_SIZE := 262144
 
 # Platform
 TARGET_BOARD_PLATFORM := trinket
@@ -77,6 +76,9 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a73
 
+# Board Info
+TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
+
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.console=ttyMSM0 earlycon=msm_serial_dm,0x4a90000 androidboot.hardware=qcom msm_rtb.filter=0x237 lpm_levels.sleep_disabled=1 service_locator.enable=1 swiotlb=1 androidboot.configfs=true androidboot.usbcontroller=4e00000.dwc3
@@ -91,7 +93,6 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 TARGET_KERNEL_SOURCE := kernel/xiaomi/laurel_sprout
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CONFIG := vendor/laurel_sprout-perf_defconfig
-TARGET_KERNEL_CLANG_VERSION := proton
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
@@ -111,7 +112,6 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
 # Camera
 TARGET_USES_QTI_CAMERA_DEVICE := true
-TARGET_USES_MIUI_CAMERA := true
 
 # Display
 TARGET_USES_HWC2 := true
@@ -135,13 +135,9 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 LOC_HIDL_VERSION := 4.0
 
 # HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix_legacy.xml \
-    hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml \
-    vendor/aosp/config/device_framework_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/configs/manifests/framework_manifest.xml
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/manifests/manifest.xml
-DEVICE_MATRIX_FILE += hardware/qcom-caf/common/compatibility_matrix.xml
+DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/manifests/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(DEVICE_PATH)/configs/manifests/framework_compatibility_matrix.xml
 
 # LMKD
@@ -151,17 +147,11 @@ TARGET_LMKD_STATS_LOG := true
 HWUI_COMPILE_FOR_PERF := true
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_trinket
-TARGET_RECOVERY_DEVICE_MODULES := libinit_trinket
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_laurel_sprout
+TARGET_RECOVERY_DEVICE_MODULES := libinit_laurel_sprout
 
 # Media
 TARGET_DISABLED_UBWC := true
-
-# Lineage Health
-TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH := /sys/class/power_supply/battery/input_suspend
-TARGET_HEALTH_CHARGING_CONTROL_CHARGING_ENABLED := 0
-TARGET_HEALTH_CHARGING_CONTROL_CHARGING_DISABLED := 1
-TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
 
 # Partitions
 BOARD_METADATAIMAGE_PARTITION_SIZE := 16777216
@@ -173,6 +163,7 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x04000000
 endif
+#BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 
 BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/firmware_mnt:/firmware \
@@ -199,8 +190,9 @@ $(foreach p, $(call to-upper, $(BOARD_LAUREL_DYNAMIC_PARTITIONS_PARTITION_LIST))
     $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := erofs) \
     $(eval TARGET_COPY_OUT_$(p) := $(call to-lower, $(p))))
 
-# Disable sparse for ext images
+# Partitions extra flags
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
+TARGET_USERIMAGES_SPARSE_F2FS_DISABLED := true
 
 # Props
 TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
@@ -226,6 +218,9 @@ BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 SELINUX_IGNORE_NEVERALLOWS := true
+
+# Treble
+BOARD_VNDK_VERSION := current
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
@@ -257,8 +252,7 @@ BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 RELAX_USES_LIBRARY_CHECK := true
 BUILD_BROKEN_ENFORCE_SYSPROP_OWNER := true
 BUILD_BROKEN_CLANG_PROPERTY := true
-BUILD_BROKEN_PLUGIN_VALIDATION := soong-xiaomi-trinket-plugins
-ALLOW_MISSING_DEPENDENCIES := true
+BUILD_BROKEN_INCORRECT_PARTITION_IMAGES := true
 
-# APEX
-DEXPREOPT_GENERATE_APEX_IMAGE := true
+TARGET_INCLUDES_MIUI_CAMERA := true
+TARGET_USES_MIUI_CAMERA := true
