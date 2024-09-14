@@ -55,6 +55,10 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+        vendor/etc/seccomp_policy/atfwd@2.0.policy)
+            [ "$2" = "" ] && return 0
+            echo 'gettid: 1' >> ${2}
+            ;; 
     esac
 }
 
