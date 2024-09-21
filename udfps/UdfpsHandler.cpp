@@ -112,6 +112,19 @@ class LaurelSproutUdfpsHander : public UdfpsHandler {
     void cancel() {
         // nothing
     }
+
+    void preEnroll() {
+        LOG(DEBUG) << __func__;
+    }
+
+    void enroll() {
+        LOG(DEBUG) << __func__;
+    }
+
+    void postEnroll() {
+        LOG(DEBUG) << __func__;
+    }
+
   private:
     fingerprint_device_t *mDevice;
 };
