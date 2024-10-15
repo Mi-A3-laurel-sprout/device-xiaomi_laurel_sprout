@@ -284,6 +284,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     DisplayFeatures
 
+# Dolby
+$(call inherit-product, hardware/dolby/dolby.mk)
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.4.vendor \
