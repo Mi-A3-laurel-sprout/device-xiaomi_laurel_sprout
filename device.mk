@@ -546,7 +546,7 @@ PRODUCT_PACKAGES += \
     android.hardware.usb.gadget@1.2-service-qti
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/usb/usb_compositions.conf:$(TARGET_COPY_OUT_VENDOR)/etc/usb_compositions.conf
+    vendor/qcom/opensource/usb/hal/usb_compositions.conf:$(TARGET_COPY_OUT_VENDOR)/etc/usb_compositions.conf
 
 # USB Debugging
 PRODUCT_PROPERTY_OVERRIDES += \
