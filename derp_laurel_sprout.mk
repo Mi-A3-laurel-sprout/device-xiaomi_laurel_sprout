@@ -39,9 +39,12 @@ PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 TARGET_VENDOR_PRODUCT_NAME := laurel_sprout
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="laurel_sprout-user 11 RKQ1.200903.002 V12.0.15.0.RFQMIXM release-keys"
-
-BUILD_FINGERPRINT := google/redfin/redfin:12/SP1A.211105.003/7757856:user/release-keys
+    BuildDesc="laurel_sprout-user 11 RKQ1.200903.002 V12.0.15.0.RFQMIXM release-keys" \
+    BuildFingerprint=google/redfin/redfin:12/SP1A.211105.003/7757856:user/release-keys \
+    DeviceName=laurel_sprout \
+    DeviceProduct=laurel_sprout \
+    SystemDevice=laurel_sprout \
+    SystemName=laurel_sprout
 
 # Props
 DERP_BUILDTYPE := Unofficial
