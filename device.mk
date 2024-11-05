@@ -543,7 +543,7 @@ PRODUCT_PACKAGES += \
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.3-service.dual_role_usb \
-    android.hardware.usb.gadget@1.2-service-qti
+    android.hardware.usb.gadget-service.qti
 
 PRODUCT_COPY_FILES += \
     vendor/qcom/opensource/usb/hal/usb_compositions.conf:$(TARGET_COPY_OUT_VENDOR)/etc/usb_compositions.conf
