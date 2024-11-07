@@ -332,8 +332,8 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.sensors.sh \
     init.qcom.sh \
-    init.qcom.usb.rc \
-    init.qcom.usb.sh \
+    init.qcom.usb.laurel_sprout.rc \
+    init.qcom.usb.laurel_sprout.sh \
     init.recovery.qcom.rc \
     init.target.rc \
     init.fingerprint.rc \

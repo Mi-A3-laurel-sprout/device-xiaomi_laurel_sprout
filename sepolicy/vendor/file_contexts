@@ -20,7 +20,6 @@
 
 # HALs
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service\.laurel_sprout            u:object_r:hal_fingerprint_default_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.[0-4]-service.clearkey                  u:object_r:vendor_hal_drm_widevine_exec:s0
 
 # Fingerprint
 /data/gf_data(/.*)?                             u:object_r:fingerprintd_data_file:s0
