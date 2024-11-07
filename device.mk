@@ -61,20 +61,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.fastbootd.available=true
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
-
-#RRO Overlays
 PRODUCT_PACKAGES += \
-    XiaomiFrameworks \
-    XiaomiSystemUI \
-    DisplayFeaturesLAUREL \
-    UdfpsSystemUI \
-    RCMSystemUI \
-    RCMFramework \
-    ApertureOverlay \
-    LaurelCarrierConfigOverlay
+    AOSPALaurelFrameworks \
+    AOSPALaurelSettings \
+    AOSPALaurelSystemUI \
+    LaurelCarrierConfigOverlay \
+    LaurelFrameworks \
+    LaurelSystemUI
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
@@ -446,14 +439,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
-# Wifi
-PRODUCT_PACKAGES += \
-    LaurelWifiOverlay
-
-# Tethering
-PRODUCT_PACKAGES += \
-    TetheringConfigOverlay
-
 # Tetheroffload
 PRODUCT_PACKAGES += \
     libipanat \
@@ -476,7 +461,6 @@ PRODUCT_PACKAGES += \
     libwifi-hal-qcom \
     libwifi-hal-ctrl \
     wcnss_service \
-    WifiOverlay \
     wpa_supplicant \
     wpa_supplicant.conf
 
@@ -506,11 +490,6 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/qcom/display \
     hardware/qcom/media
-
-# Overlays
-PRODUCT_PACKAGES += \
-    AOSPALaurelFrameworks \
-    LaurelFrameworks
 
 # Force voLTE/voWIFI/viLTE
 PRODUCT_SYSTEM_EXT_PROPERTIES += \

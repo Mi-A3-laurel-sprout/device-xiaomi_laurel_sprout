@@ -11,13 +11,21 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<!-- These resources are around just to allow their values to be customized
+     for different hardware and product builds. -->
 <resources>
 
-    <!-- Defines the sysfs attribute path used by the device
-         to enable/disable DC dimming. -->
-    <string name="config_deviceDcDimmingSysfsNode">/sys/devices/platform/soc/soc:qcom,dsi-display/dc_dimming</string>
+    <!-- Color of the UDFPS pressed view -->
+    <color name="config_udfpsColor">#ffffff</color>
 
-    <!-- Fingerprint from stock ROM -->
-    <string name="config_stockFingerprint" translatable="false">Xiaomi/laurel_sprout/laurel_sprout:11/RKQ1.200903.002/V12.0.15.0.RFQMIXM:user/release-keys</string>
+    <!-- HBM type of UDFPS overlay.
+            0 - GLOBAL HBM 
+            1 - LOCAL HBM
+    -->
+    <integer name="config_udfps_hbm_type">0</integer>
+
+    <!-- Trigger onFingerDown for action down events. This is a workaround for certain devices
+         that have UDFPS delays without the commit present and should be false by default. -->
+    <bool name="config_udfpsTriggerOnFingerDownForActionDown">true</bool>
 
 </resources>
