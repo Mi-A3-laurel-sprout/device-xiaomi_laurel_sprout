@@ -239,7 +239,7 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit the proprietary files
--include vendor/xiaomi/laurel_sprout/BoardConfigVendor.mk
+include vendor/xiaomi/laurel_sprout/BoardConfigVendor.mk
 
 # Broken Build
 BUILD_BROKEN_DUP_RULES := true

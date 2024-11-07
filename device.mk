@@ -472,7 +472,7 @@ PRODUCT_PACKAGES += \
 #    WfdCommon
 
 # Inherit proprietary files
-$(call inherit-product-if-exists, vendor/xiaomi/laurel_sprout/laurel_sprout-vendor.mk)
+$(call inherit-product, vendor/xiaomi/laurel_sprout/laurel_sprout-vendor.mk)
 
 #Keylayout
 PRODUCT_COPY_FILES += \
