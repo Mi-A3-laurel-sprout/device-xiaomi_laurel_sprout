@@ -21,10 +21,6 @@
 # definition file).
 #
 
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
-
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -70,10 +66,6 @@ PRODUCT_PACKAGES += \
     LaurelSystemUI
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
-
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
 
 # Permissions
 PRODUCT_COPY_FILES += \
