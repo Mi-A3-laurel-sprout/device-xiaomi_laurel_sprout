@@ -359,8 +359,6 @@ PRODUCT_PACKAGES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libavservices_minijail \
-    libavservices_minijail.vendor \
     libc2dcolorconvert \
     libhypv_intercept \
     libmm-omxcore \
@@ -397,6 +395,7 @@ PRODUCT_COPY_FILES += \
 
 # QTI
 TARGET_COMMON_QTI_COMPONENTS += \
+    av \
     adreno \
     alarm \
     audio \
