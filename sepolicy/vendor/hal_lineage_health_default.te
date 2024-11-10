@@ -1,0 +1,4 @@
+allow hal_lineage_health_default sysfs:file { getattr open read };
+allow hal_lineage_health_default sysfs_battery:file { getattr open read write };
+allow hal_lineage_health_default sysfs_battery:dir search;
+allow hal_lineage_health_default sysfs_power_supply: file { getattr open read write };

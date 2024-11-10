@@ -1,6 +1,16 @@
+# Health
+genfscon sysfs /devices/platform/soc/1c40000.qcom,spmi/spmi-0/spmi0-02/1c40000.qcom,spmi:qcom,pmi632@2:qcom,qpnp-smb5/power_supply/usb/ u:object_r:sysfs_power_supply:s0
+genfscon sysfs /devices/platform/soc/1c40000.qcom,spmi/spmi-0/spmi0-02/1c40000.qcom,spmi:qcom,pmi632@2:qcom,qpnp-smb5/power_supply/battery/ u:object_r:sysfs_power_supply:s0
+
 # FOD
 genfscon sysfs /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/touch/tp_dev/fod_status          u:object_r:sysfs_fod:s0
 genfscon sysfs /sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui                       u:object_r:sysfs_fod:s0
 
 # Touchpanel
 genfscon sysfs /touchpanel                                      u:object_r:sysfs_touchpanel:s0
+
+# vibrate
+genfscon sysfs /devices/platform/soc/1c40000.qcom,spmi/spmi-0/spmi0-03/1c40000.qcom,spmi\:qcom,pmi632@3\:qcom,vibrator@5700/leds/vibrator                        u:object_r:sysfs_vibrator:s0
+genfscon sysfs /devices/platform/soc/1c40000.qcom,spmi/spmi-0/spmi0-03/1c40000.qcom,spmi:qcom,pmi632@3:qcom,vibrator@5700/leds/vibrator/activate                 u:object_r:sysfs_leds:s0
+genfscon sysfs /devices/platform/soc/1c40000.qcom,spmi/spmi-0/spmi0-03/1c40000.qcom,spmi:qcom,pmi632@3:qcom,vibrator@5700/leds/vibrator/state                    u:object_r:sysfs_leds:s0
+genfscon sysfs /devices/platform/soc/1c40000.qcom,spmi/spmi-0/spmi0-03/1c40000.qcom,spmi:qcom,pmi632@3:qcom,vibrator@5700/leds/vibrator/duration                 u:object_r:sysfs_leds:s0
