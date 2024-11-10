@@ -308,17 +308,11 @@ $(foreach target, $(shell cat $(LOCAL_PATH)/configs/vndk/vndk.txt), $(eval PRODU
 # Init
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.class_main.sh \
-    init.msm.usb.configfs.rc \
-    init.qcom.early_boot.sh \
-    init.qcom.post_boot.sh \
-    init.qcom.rc \
-    init.qcom.sensors.sh \
-    init.qcom.sh \
-    init.recovery.qcom.rc \
-    init.target.rc \
-    init.fingerprint.rc \
-    ueventd.qcom.rc
+    init.laurel.rc \
+    init.laurel.perf.rc \
+    init.laurel.wifi.rc \
+    init.qti.dcvs.sh \
+    init.target.rc
 
 # IRQ
 PRODUCT_COPY_FILES += \
@@ -394,6 +388,7 @@ TARGET_COMMON_QTI_COMPONENTS += \
     bt \
     overlay \
     vibrator \
+    init \
     perf \
     telephony \
     usb \
@@ -404,7 +399,7 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.qcom
+    $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.qcom
 
 # RIL
 PRODUCT_PACKAGES += \
