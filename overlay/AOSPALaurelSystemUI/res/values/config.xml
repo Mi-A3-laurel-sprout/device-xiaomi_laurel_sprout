@@ -28,4 +28,13 @@
          that have UDFPS delays without the commit present and should be false by default. -->
     <bool name="config_udfpsTriggerOnFingerDownForActionDown">true</bool>
 
+    <!-- keyguard positioning -->
+    <dimen name="keyguard_indication_margin_bottom">120dp</dimen>
+
+    <!-- Padding for the lock icon on the keyguard. In pixels - should not scale with display size.
+         (Inner space from radius of bg circle to amount of pixels)-->
+    <dimen name="lock_icon_padding">30px</dimen>
+
+    <!-- Pixel pitch of the device. um/px -->
+    <item name="pixel_pitch" format="float" type="dimen">89.55</item>
 </resources>
