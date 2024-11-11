@@ -174,6 +174,9 @@ PRODUCT_PACKAGES += \
     libstdc++.vendor \
     libcamera2ndk_vendor \
     libdng_sdk.vendor \
+    libpiex \
+    libpiex_shim \
+    libpng.vendor \
     libgui_shim
 
 PRODUCT_COPY_FILES += \
@@ -352,6 +355,8 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
+    libstagefright_softomx.vendor \
+    libstagefright_softomx_plugin.vendor \
     libstagefrighthw
 
 # ParanoidDoze
@@ -438,6 +443,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libaacwrapper \
     libnl \
+    libsqlite.vendor \
     libwfdaac_vendor
 
 #PRODUCT_BOOT_JARS += \
