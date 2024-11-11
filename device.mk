@@ -355,8 +355,8 @@ PRODUCT_PACKAGES += \
     libstagefrighthw
 
 # ParanoidDoze
-PRODUCT_PACKAGES += \
-    ParanoidDoze
+#PRODUCT_PACKAGES += \
+#    ParanoidDoze
 
 # Power
 PRODUCT_PACKAGES += \
