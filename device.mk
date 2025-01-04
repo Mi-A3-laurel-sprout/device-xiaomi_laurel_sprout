@@ -173,8 +173,7 @@ PRODUCT_PACKAGES += \
     libhdmiedid \
     libhfp \
     libaudioroute.vendor \
-    libsndmonitor \
-    libstagefright_softomx_plugin.vendor
+    libsndmonitor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
@@ -247,7 +246,8 @@ PRODUCT_PACKAGES += \
 
 # Configstore
 PRODUCT_PACKAGES += \
-    disable_configstore
+    disable_configstore \
+    vendor.qti.hardware.capabilityconfigstore@1.0.vendor
 
 # Display
 PRODUCT_PACKAGES += \
@@ -396,13 +396,7 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, vendor/MiuiCamera/config.mk)
 
 # Media
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/media/,$(TARGET_COPY_OUT_VENDOR)/etc)
-
-PRODUCT_COPY_FILES += \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml
+TARGET_SUPPORTS_OMX_SERVICE := false
 
 PRODUCT_PACKAGES += \
     android.media.audio.common.types-V2-cpp
@@ -410,21 +404,12 @@ PRODUCT_PACKAGES += \
 # Offline charging images
 include $(LOCAL_PATH)/rootdir/charger/charger.mk
 
-# OMX
+# Minijail
 PRODUCT_PACKAGES += \
+    libminijail \
+    libminijail.vendor \
     libavservices_minijail \
     libavservices_minijail.vendor \
-    libc2dcolorconvert \
-    libmm-omxcore \
-    libOmxCore \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libOmxEvrcEnc \
-    libOmxG711Enc \
-    libOmxQcelp13Enc \
-    libOmxVdec \
-    libOmxVenc \
-    libstagefrighthw
 
 # Power
 PRODUCT_PACKAGES += \
@@ -499,7 +484,6 @@ PRODUCT_PACKAGES += \
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
     $(LOCAL_PATH)/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
 
 # Sensors
