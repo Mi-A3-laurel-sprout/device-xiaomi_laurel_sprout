@@ -114,11 +114,6 @@ TARGET_USES_QTI_CAMERA_DEVICE := true
 TARGET_USES_MIUI_CAMERA := true
 TARGET_USES_YCRCB_CAMERA_ENCODE := true
 
-# Display
-TARGET_USES_HWC2 := true
-TARGET_USES_GRALLOC4 := true
-TARGET_USES_ION := true
-
 # DRM
 TARGET_ENABLE_MEDIADRM_64 := true
 
@@ -157,6 +152,7 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_trinket
 
 # Media
 TARGET_DISABLED_UBWC := true
+TARGET_USES_ION := true
 
 # Lineage Health
 TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH := /sys/class/power_supply/battery/input_suspend

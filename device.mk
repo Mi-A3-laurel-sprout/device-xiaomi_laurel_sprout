@@ -254,8 +254,8 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    gralloc.trinket \
-    hwcomposer.trinket \
+    gralloc.qcom \
+    hwcomposer.qcom \
     memtrack.trinket \
     libdisplayconfig.qti \
     libtinyxml \
