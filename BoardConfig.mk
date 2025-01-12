@@ -91,7 +91,6 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 TARGET_KERNEL_SOURCE := kernel/xiaomi/laurel_sprout
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CONFIG := vendor/laurel_sprout-perf_defconfig
-TARGET_KERNEL_CLANG_VERSION := proton
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
