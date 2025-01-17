@@ -550,10 +550,11 @@ PRODUCT_COPY_FILES += \
 
 # USB Debugging
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb \
+    ro.control_privapp_permissions=log \
     ro.adb.secure=0 \
-    ro.secure=0 \
-    ro.debuggable=1
+    persist.sys.usb.config=mtp,adb \
+    persist.service.debuggable=1 \
+    persist.service.adb.enable=1
 
 # Vibrator
 PRODUCT_PACKAGES += \
