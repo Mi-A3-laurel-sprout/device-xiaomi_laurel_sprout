@@ -396,6 +396,15 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, vendor/MiuiCamera/config.mk)
 
 # Media
+PRODUCT_PACKAGES += \
+    android.hardware.media.c2@1.1.vendor \
+    android.hardware.media.c2@1.2.vendor \
+    libcodec2_hidl@1.0.vendor \
+    libcodec2_vndk.vendor
+
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/media/,$(TARGET_COPY_OUT_VENDOR)/etc)
+
 TARGET_SUPPORTS_OMX_SERVICE := false
 
 PRODUCT_PACKAGES += \
@@ -403,6 +412,9 @@ PRODUCT_PACKAGES += \
 
 # Offline charging images
 include $(LOCAL_PATH)/rootdir/charger/charger.mk
+
+PRODUCT_COPY_FILES += \
+     hardware/qcom-caf/sm8150/media/conf_files/sm6150/codec2.vendor.ext.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/codec2.vendor.ext.policy
 
 # Minijail
 PRODUCT_PACKAGES += \
