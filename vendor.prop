@@ -171,8 +171,10 @@ ro.frp.pst=/dev/block/bootdevice/by-name/frp
 ro.hardware.keystore_desede=true
 
 # Media
-debug.stagefright.ccodec=1
-debug.stagefright.omx_default_rank=0
+debug.media.codec2=2
+debug.stagefright.c2inputsurface=-1
+media.stagefright.thumbnail.prefer_hw_codecs=true
+ro.media.recorder-max-base-layer-fps=60
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
