@@ -47,17 +47,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     SystemName=laurel_sprout
 
 # Props
-EVO_BUILD_TYPE := UnOfficial
-TARGET_BOOT_ANIMATION_RES := 720
-TARGET_FACE_UNLOCK_SUPPORTED := true
-TARGET_USES_BLUR := true
-TARGET_USES_MINI_GAPPS := true
-TARGET_GAPPS_ARCH := arm64
-TARGET_SUPPORTS_QUICK_TAP := true
-
-# UDFPS animations
-TARGET_HAS_UDFPS := true
-
-# Use gestures by default
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
+AXION_CAMERA_REAR_INFO := 48,8,2
+AXION_CAMERA_FRONT_INFO := 32
+AXION_MAINTAINER := PowerX-NOT
+AXION_PROCESSOR := Qualcomm_SM6125_Snapdragon_665_(11_nm)
