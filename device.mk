@@ -371,8 +371,6 @@ PRODUCT_PACKAGES += \
     init.qcom.post_boot.sh \
     init.qcom.rc \
     init.qcom.sh \
-    init.qcom.usb.rc \
-    init.qcom.usb.sh \
     init.recovery.qcom.rc \
     init.target.rc \
     init.fingerprint.rc \
@@ -542,7 +540,9 @@ PRODUCT_PACKAGES += \
     android.hardware.usb.gadget-service.qti
 
 PRODUCT_COPY_FILES += \
-    vendor/qcom/opensource/usb/hal/usb_compositions.conf:$(TARGET_COPY_OUT_VENDOR)/etc/usb_compositions.conf
+    vendor/qcom/opensource/usb/hal/usb_compositions.conf:$(TARGET_COPY_OUT_VENDOR)/etc/usb_compositions.conf \
+    vendor/qcom/opensource/usb/etc/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.usb.rc \
+    vendor/qcom/opensource/usb/etc/init.qcom.usb.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.usb.sh
 
 # USB Debugging
 PRODUCT_PROPERTY_OVERRIDES += \
