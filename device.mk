@@ -27,7 +27,8 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/interfaces \
     hardware/google/interfaces \
     vendor/qcom/opensource/dataservices \
-    hardware/xiaomi
+    hardware/xiaomi \
+    vendor/qcom/opensource/usb/etc
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
@@ -371,8 +372,6 @@ PRODUCT_PACKAGES += \
     init.qcom.post_boot.sh \
     init.qcom.rc \
     init.qcom.sh \
-    init.qcom.usb.rc \
-    init.qcom.usb.sh \
     init.recovery.qcom.rc \
     init.target.rc \
     init.fingerprint.rc \
@@ -538,11 +537,13 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service.dual_role_usb \
+    android.hardware.usb@1.3-service-qti \
     android.hardware.usb.gadget-service.qti
 
-PRODUCT_COPY_FILES += \
-    vendor/qcom/opensource/usb/hal/usb_compositions.conf:$(TARGET_COPY_OUT_VENDOR)/etc/usb_compositions.conf
+PRODUCT_PACKAGES += \
+    usb_compositions.conf \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh
 
 # USB Debugging
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -551,6 +552,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
     persist.service.debuggable=1 \
     persist.service.adb.enable=1
+
+# Logging
+PRODUCT_PACKAGES += \
+    MatLog
 
 # Vibrator
 PRODUCT_PACKAGES += \

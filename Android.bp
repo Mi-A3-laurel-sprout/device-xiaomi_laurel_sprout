@@ -5,6 +5,7 @@ soong_namespace {
     "hardware/interfaces",
     "vendor/qcom/opensource/dataservices",
     "hardware/xiaomi",
+    "vendor/qcom/opensource/usb/etc",
     ],
 }
 
