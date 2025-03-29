@@ -36,20 +36,11 @@ $(call inherit-product, hardware/qcom-caf/common/common.mk)
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=erofs \
+    FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
 PRODUCT_PACKAGES += \
     otapreopt_script
-
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_vendor=true \
-    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
-    FILESYSTEM_TYPE_vendor=erofs \
-    POSTINSTALL_OPTIONAL_vendor=true
-
-PRODUCT_PACKAGES += \
-    checkpoint_gc
 
 # Boot control
 PRODUCT_PACKAGES += \
@@ -61,13 +52,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
-
-# fastbootd
-PRODUCT_PACKAGES += \
-    fastbootd
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.fastbootd.available=true
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -457,13 +441,6 @@ PRODUCT_PACKAGES += \
 # RenderScript HAL
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
-
-# Retrofit Dynamic Partition
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.qcom
 
 # RIL
 PRODUCT_PACKAGES += \
