@@ -36,6 +36,10 @@ function blob_fixup() {
             "${PATCHELF}" --remove-needed "libhidlbase.so" "${2}"
             sed -i "s/libhidltransport.so/libhidlbase-v32.so\x00/" "${2}"
             ;;
+        vendor/lib64/hw/android.hardware.health@2.0-impl-2.1-qti.so)
+             [ "$2" = "" ] && return 0
+             grep -q "libbase_shim.so" "${2}" || "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
+             ;;
     esac
 }
 
