@@ -410,9 +410,6 @@ TARGET_SUPPORTS_OMX_SERVICE := false
 PRODUCT_PACKAGES += \
     android.media.audio.common.types-V2-cpp
 
-# Offline charging images
-include $(LOCAL_PATH)/rootdir/charger/charger.mk
-
 PRODUCT_COPY_FILES += \
      hardware/qcom-caf/sm8150/media/conf_files/sm6150/codec2.vendor.ext.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/codec2.vendor.ext.policy
 
